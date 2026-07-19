@@ -150,10 +150,20 @@ every new hire or every new tool the team adopts.
 
 ## Try it yourself
 
+**Live interactive demo**: [tourinhan.github.io/Fund-of-Brian](https://tourinhan.github.io/Fund-of-Brian/)
+*(enable GitHub Pages in repo Settings → Pages → Deploy from branch → `main` / `root`
+if this link isn't live yet — see [`index.html`](index.html))*
+
+Load one of four fictional example deals (one per tier) and watch the 7-dimension
+rubric score it live, with a breakdown per dimension and the resulting tier —
+rendered as an investment-memo-style scorecard, not a generic form.
+
 The scoring rubric described in `skills/icp-definition.md` isn't just prose — it's
-precise enough to run. [`tools/icp_scorer.py`](tools/icp_scorer.py) is a small,
-dependency-free Python script that implements the same 7-dimension rubric and scores
-four fictional example deals, one per tier:
+precise enough to run. There are two runnable implementations of the same 7-dimension
+rubric, kept in sync:
+
+- **[`index.html`](index.html)** — the interactive web demo above (vanilla HTML/CSS/JS, no build step)
+- **[`tools/icp_scorer.py`](tools/icp_scorer.py)** — a dependency-free Python CLI version, useful for reading the logic as plain code
 
 ```bash
 python3 tools/icp_scorer.py
@@ -177,6 +187,8 @@ See [`tools/README.md`](tools/README.md) for usage details.
 ## Repository structure
 
 ```
+index.html               Live interactive scoring demo (GitHub Pages)
+
 skills/                  The 6 operational knowledge files (sanitized)
 ├── claude.md             Entry point — who we are, tool access rules
 ├── icp-definition.md     ICP definition + 7-dimension scoring rubric

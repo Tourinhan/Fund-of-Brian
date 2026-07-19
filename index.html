@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICP Scorer — GTM Brain</title>
+<meta name="description" content="A live, runnable implementation of a 7-dimension VC deal scoring rubric. All data is fictional.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #EAEDEC;
+    --paper-raised: #F5F6F4;
+    --ink: #14202B;
+    --ink-soft: #4A5A63;
+    --rule: #C3CBC9;
+    --rule-soft: #D7DDDB;
+    --tier1: #1F6F50;
+    --tier2: #2E6E8E;
+    --tier3: #8A6A1E;
+    --tier4: #8C2F26;
+    --tier-neutral: #6B7A80;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+    --mono: 'IBM Plex Mono', 'SF Mono', monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  body{
+    margin:0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--tier2); }
+
+  .wrap{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  header.masthead{
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 20px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .masthead-title{
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(28px, 4vw, 42px);
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .masthead-sub{
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    margin-top: 6px;
+  }
+
+  .masthead-link{
+    font-family: var(--mono);
+    font-size: 13px;
+    text-decoration: none;
+    border: 1px solid var(--ink);
+    padding: 8px 14px;
+    white-space: nowrap;
+  }
+  .masthead-link:hover{ background: var(--ink); color: var(--paper); }
+
+  .disclaimer{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-soft);
+    padding: 10px 0 28px;
+    border-bottom: 1px solid var(--rule-soft);
+    margin-bottom: 32px;
+  }
+
+  /* Example selector */
+  .examples{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+  .example-btn{
+    font-family: var(--mono);
+    font-size: 12.5px;
+    background: var(--paper-raised);
+    border: 1px solid var(--ink);
+    padding: 10px 16px;
+    cursor: pointer;
+    color: var(--ink);
+    transition: transform .12s ease, background .12s ease;
+  }
+  .example-btn:hover{ background: var(--ink); color: var(--paper); }
+  .example-btn:active{ transform: translateY(1px); }
+  .example-btn .tag{ opacity:.65; margin-left:6px; }
+
+  /* Layout */
+  .layout{
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 40px;
+    align-items: start;
+  }
+  @media (max-width: 880px){
+    .layout{ grid-template-columns: 1fr; }
+  }
+
+  .panel{
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+  }
+
+  .panel-head{
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 600;
+    padding: 18px 22px;
+    border-bottom: 2px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .panel-head .idx{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+
+  /* Form */
+  .dim-group{
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .dim-group:last-child{ border-bottom: none; }
+
+  .dim-label{
+    font-family: var(--mono);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .field-row{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .field{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .field label{
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+  .field input[type="number"],
+  .field select{
+    font-family: var(--sans);
+    font-size: 14px;
+    padding: 8px 10px;
+    border: 1px solid var(--rule);
+    background: #fff;
+    color: var(--ink);
+  }
+  .field input[type="number"]:focus,
+  .field select:focus{
+    outline: 2px solid var(--tier2);
+    outline-offset: 1px;
+  }
+
+  .checkfield{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    padding: 4px 0;
+  }
+  .checkfield input{ width: 16px; height: 16px; accent-color: var(--ink); }
+
+  .two-col{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 480px){ .two-col{ grid-template-columns: 1fr; } }
+
+  /* Scorecard */
+  .score-line{
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .score-line-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--mono);
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+  .score-line-name{ font-size: 13.5px; color: var(--ink); font-weight: 500; }
+  .score-line-pts{ color: var(--ink-soft); }
+  .bar-track{
+    height: 7px;
+    background: var(--rule-soft);
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .bar-fill{
+    position: absolute;
+    top:0; left:0; bottom:0;
+    background: var(--ink);
+    transition: width .35s cubic-bezier(.4,0,.2,1);
+  }
+  .score-line-why{
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+
+  .total-row{
+    padding: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .total-label{
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+  }
+  .total-value{
+    font-family: var(--mono);
+    font-size: 30px;
+    font-weight: 600;
+  }
+  .total-value span{ font-size: 16px; color: var(--ink-soft); }
+
+  /* Verdict stamp */
+  .verdict-wrap{
+    padding: 30px 22px 26px;
+    display: flex;
+    justify-content: center;
+  }
+  .stamp{
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    border: 3px solid currentColor;
+    padding: 12px 26px;
+    transform: rotate(-2deg);
+    transition: color .25s ease, border-color .25s ease, transform .25s ease;
+    text-align: center;
+  }
+  .stamp.pulse{ animation: stampIn .28s ease; }
+  @keyframes stampIn{
+    0%{ transform: rotate(-2deg) scale(0.9); opacity: .4; }
+    60%{ transform: rotate(-2deg) scale(1.04); opacity: 1; }
+    100%{ transform: rotate(-2deg) scale(1); }
+  }
+
+  .flags{
+    padding: 16px 22px 22px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--tier4);
+    border-top: 1px dashed var(--rule);
+  }
+  .flags-title{ text-transform: uppercase; letter-spacing: .06em; font-size: 11px; margin-bottom: 8px; }
+  .flags ul{ margin: 0; padding-left: 18px; }
+  .flags li{ margin-bottom: 6px; }
+
+  footer{
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule-soft);
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .bar-fill, .stamp{ transition: none; animation: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div>
+      <h1 class="masthead-title">ICP Scorer</h1>
+      <div class="masthead-sub">7-dimension deal scoring rubric · live implementation</div>
+    </div>
+    <a class="masthead-link" href="https://github.com/Tourinhan/Fund-of-Brian" target="_blank" rel="noopener">↳ View the full case study</a>
+  </header>
+
+  <div class="disclaimer">
+    All deal names and figures on this page are fictional, invented for demonstration purposes.
+    The scoring logic mirrors <code>skills/icp-definition.md</code> and <code>tools/icp_scorer.py</code> in the repository — read them side by side.
+  </div>
+
+  <div class="examples" id="examples"></div>
+
+  <div class="layout">
+
+    <div class="panel">
+      <div class="panel-head">Deal intake<span class="idx">input</span></div>
+      <div id="form"></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">Scorecard<span class="idx">output</span></div>
+      <div id="scorecard"></div>
+    </div>
+
+  </div>
+
+  <footer>
+    GTM Brain — architecture case study. Not affiliated with any real investment fund.
+  </footer>
+</div>
+
+<script>
+// ---------------------------------------------------------------------------
+// Scoring logic — mirrors tools/icp_scorer.py exactly. Read them side by side.
+// ---------------------------------------------------------------------------
+
+function fmtX(m){ return (Math.round(m*10)/10) + "x"; }
+function fmtEUR(n){ return "€" + Number(n).toLocaleString("en-US"); }
+
+function scoreMoic(m, stage, exitValidated){
+  const seed = stage === "seed";
+  let pts, why;
+  if ((seed && m > 10) || (!seed && m > 5)){
+    pts = exitValidated ? 20 : 19;
+    why = `Base case ${fmtX(m)} clears the fund's top band` + (exitValidated ? " with a validated exit point." : ", but the exit point isn't validated yet.");
+  } else if ((seed && m >= 7) || (!seed && m >= 3)){
+    pts = exitValidated ? 15 : 14;
+    why = `Base case ${fmtX(m)} — solid, but upside likely hinges on a non-guaranteed event.`;
+  } else if ((seed && m >= 3) || (!seed && m >= 2)){
+    pts = 8;
+    why = `Base case ${fmtX(m)} — below the fund's top bands, fund-returning outcome needs an optimistic scenario.`;
+  } else {
+    pts = 3;
+    why = `Base case ${fmtX(m)} — below the fund's minimum threshold, or not reliably calculable.`;
+  }
+  return {name:"Return potential (MOIC)", points:pts, max:20, why};
+}
+
+function scoreTraction(arr, growth, hasInstitutional, churn){
+  let pts, why;
+  if (arr > 500000 && growth > 100 && churn < 5){
+    pts=19; why="ARR >€500K, growing >100% YoY, churn <5% — top band.";
+  } else if (arr >= 100000 || (hasInstitutional && arr >= 50000)){
+    pts=14; why="Meaningful ARR or paid institutional pilots, growth demonstrable.";
+  } else if (arr > 0 || hasInstitutional){
+    pts=8; why="Early revenue or unpaid pilots with relevant LOIs — concept validated, not scale.";
+  } else {
+    pts=3; why="Pre-revenue, no contracts or paid pilots.";
+  }
+  return {name:"Commercial traction", points:pts, max:20, why};
+}
+
+function scoreTeam(exitHealth, exitOther, techCofounder, jointExp){
+  let pts = 6;
+  let parts = ["First-time founder team as baseline."];
+  if (exitHealth && techCofounder){
+    pts = 14;
+    parts = ["Serial founder with a prior health exit + relevant technical co-founder."];
+  } else if (exitOther && techCofounder){
+    pts = 10;
+    parts = ["Prior exit (any sector) or deep sector background + relevant technical co-founder."];
+  }
+  let bonus = 0;
+  if (jointExp){ bonus += 1; parts.push("+1 bonus: prior joint experience."); }
+  if (exitOther){ bonus += 1; parts.push("+1 bonus: prior exit >€10M in any sector."); }
+  pts = Math.min(15, pts + bonus);
+  return {name:"Team", points:pts, max:15, why:parts.join(" ")};
+}
+
+const SECTOR_TABLE = {
+  core: [14, "Exact core of the thesis, precedent in the portfolio."],
+  adjacent: [10, "Confirmed Digital Health, less familiar sub-sector."],
+  peripheral: [6, "Peripheral fit — consumer component or generic horizontal tech."],
+  outside: [2, "Outside the sector or generic AI with no clinical/regulatory edge."],
+};
+const COINVESTOR_TABLE = {
+  top_tier_committed: [9, "Top-tier lead investor already committed."],
+  mid_tier_committed: [7, "Mid-to-high quality co-investor committed, or top-tier in advanced talks."],
+  only_angels: [4, "Only business angels or accelerators, no VC lead confirmed."],
+  none: [1, "No co-investors, no signal of interest from quality funds."],
+};
+const GEO_TABLE = {
+  spain_tt: [9, "Spanish with documented tech transfer."],
+  spain_no_tt: [7, "Spanish without formal tech transfer but a relevant institutional link."],
+  europe_with_es_link: [6, "European with Spanish operations or relevant pipeline."],
+  europe_only: [3, "European with no Spanish presence or pipeline."],
+  outside_eu: [0, "Outside Spain/Europe with no European expansion plan."],
+};
+
+function scoreValuation(pm, boardSeat){
+  let pts, why;
+  if (pm < 15000000 && boardSeat){ pts=9; why="Post-money <€15M, >7% equity, board seat confirmed."; }
+  else if (pm < 25000000){ pts=7; why="Post-money €15M-€25M, ~5-7% equity, standard market terms."; }
+  else if (pm < 40000000){ pts=5; why="Post-money €25M-€40M, ~3-5% equity, no board seat confirmed."; }
+  else { pts=2; why="Post-money >€40M or equity <3% with no room to negotiate."; }
+  return {name:"Valuation / equity", points:pts, max:10, why};
+}
+
+function tierForScore(total){
+  if (total >= 75) return {label:"Tier 1 — Supernova", css:"tier1"};
+  if (total >= 50) return {label:"Tier 2 — Watch soon", css:"tier2"};
+  if (total >= 25) return {label:"Tier 3 — Watch later", css:"tier3"};
+  return {label:"Tier 4 / Anti-ICP — Pass", css:"tier4"};
+}
+
+function blockingFlags(dims, boardSeat){
+  const flags = [];
+  const moic = dims.find(d => d.name.startsWith("Return"));
+  const val = dims.find(d => d.name.startsWith("Valuation"));
+  if (moic.points <= 5) flags.push("MOIC blocking flag (0-5 pts): blocks advancement to Analysis unless a formal IC exception is approved by partners.");
+  if (val.points <= 3 && !boardSeat) flags.push("Valuation/equity blocking flag (0-3 pts, no board seat): direct discard (Tier 4) unless a formal IC exception applies.");
+  return flags;
+}
+
+function scoreDeal(d){
+  const dims = [
+    scoreMoic(d.base_case_multiple, d.stage, d.exit_point_validated),
+    scoreTraction(d.arr_eur, d.yoy_growth_pct, d.has_institutional_paid_contracts, d.churn_pct),
+    scoreTeam(d.founder_prior_exit_in_health, d.founder_prior_exit_other_sector, d.technical_cofounder_present, d.joint_prior_experience),
+    {name:"Sector / thesis fit", points:SECTOR_TABLE[d.sector_fit][0], max:15, why:SECTOR_TABLE[d.sector_fit][1]},
+    {name:"Co-investors", points:COINVESTOR_TABLE[d.coinvestor_tier][0], max:10, why:COINVESTOR_TABLE[d.coinvestor_tier][1]},
+    {name:"Geography / tranche", points:GEO_TABLE[d.geography][0], max:10, why:GEO_TABLE[d.geography][1]},
+    scoreValuation(d.post_money_eur, d.board_seat_confirmed),
+  ];
+  const total = dims.reduce((s,x)=>s+x.points, 0);
+  return {dims, total, tier: tierForScore(total), flags: blockingFlags(dims, d.board_seat_confirmed)};
+}
+
+// ---------------------------------------------------------------------------
+// Bundled fictional example deals — same data as tools/sample_deals.json
+// ---------------------------------------------------------------------------
+
+const EXAMPLES = [
+  { key:"veltrix", label:"Veltrix Analytics", tag:"Tier 1", data:{
+    stage:"series_a", base_case_multiple:6.5, exit_point_validated:true, arr_eur:620000,
+    yoy_growth_pct:140, has_institutional_paid_contracts:true, churn_pct:3,
+    founder_prior_exit_in_health:true, founder_prior_exit_other_sector:false,
+    technical_cofounder_present:true, joint_prior_experience:true, sector_fit:"core",
+    coinvestor_tier:"top_tier_committed", geography:"spain_tt", post_money_eur:14000000, board_seat_confirmed:true
+  }},
+  { key:"cortavia", label:"Cortavia", tag:"Tier 2", data:{
+    stage:"seed", base_case_multiple:4.0, exit_point_validated:false, arr_eur:85000,
+    yoy_growth_pct:60, has_institutional_paid_contracts:true, churn_pct:0,
+    founder_prior_exit_in_health:false, founder_prior_exit_other_sector:false,
+    technical_cofounder_present:true, joint_prior_experience:false, sector_fit:"core",
+    coinvestor_tier:"only_angels", geography:"spain_tt", post_money_eur:9000000, board_seat_confirmed:false
+  }},
+  { key:"kestrion", label:"Kestrion", tag:"Tier 3", data:{
+    stage:"seed", base_case_multiple:3.5, exit_point_validated:false, arr_eur:15000,
+    yoy_growth_pct:80, has_institutional_paid_contracts:false, churn_pct:0,
+    founder_prior_exit_in_health:false, founder_prior_exit_other_sector:false,
+    technical_cofounder_present:true, joint_prior_experience:false, sector_fit:"adjacent",
+    coinvestor_tier:"only_angels", geography:"europe_only", post_money_eur:5000000, board_seat_confirmed:false
+  }},
+  { key:"zendrax", label:"Zendrax", tag:"Tier 4", data:{
+    stage:"seed", base_case_multiple:1.4, exit_point_validated:false, arr_eur:0,
+    yoy_growth_pct:0, has_institutional_paid_contracts:false, churn_pct:0,
+    founder_prior_exit_in_health:false, founder_prior_exit_other_sector:false,
+    technical_cofounder_present:false, joint_prior_experience:false, sector_fit:"peripheral",
+    coinvestor_tier:"none", geography:"outside_eu", post_money_eur:45000000, board_seat_confirmed:false
+  }},
+];
+
+// ---------------------------------------------------------------------------
+// Form rendering
+// ---------------------------------------------------------------------------
+
+const FIELDS_HTML = `
+  <div class="dim-group">
+    <div class="dim-label"><span>1 · Return potential</span><span>20 pts</span></div>
+    <div class="field-row">
+      <div class="two-col">
+        <div class="field"><label for="f-stage">Stage</label>
+          <select id="f-stage"><option value="seed">Seed</option><option value="series_a">Series A</option></select>
+        </div>
+        <div class="field"><label for="f-moic">Base case multiple</label>
+          <input type="number" id="f-moic" step="0.1" min="0" value="4.0">
+        </div>
+      </div>
+      <label class="checkfield"><input type="checkbox" id="f-exit"> Exit point validated with a comparable</label>
+    </div>
+  </div>
+
+  <div class="dim-group">
+    <div class="dim-label"><span>2 · Commercial traction</span><span>20 pts</span></div>
+    <div class="field-row">
+      <div class="two-col">
+        <div class="field"><label for="f-arr">ARR (€)</label><input type="number" id="f-arr" min="0" step="1000" value="85000"></div>
+        <div class="field"><label for="f-growth">YoY growth (%)</label><input type="number" id="f-growth" min="0" value="60"></div>
+      </div>
+      <div class="two-col">
+        <div class="field"><label for="f-churn">Churn (%)</label><input type="number" id="f-churn" min="0" step="0.5" value="0"></div>
+        <div class="field" style="justify-content:center;">
+          <label class="checkfield"><input type="checkbox" id="f-institutional" checked> Paid institutional contracts</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dim-group">
+    <div class="dim-label"><span>3 · Team</span><span>15 pts</span></div>
+    <div class="field-row">
+      <label class="checkfield"><input type="checkbox" id="f-exithealth"> Founder has a prior exit in health</label>
+      <label class="checkfield"><input type="checkbox" id="f-exitother"> Founder has a prior exit in any sector</label>
+      <label class="checkfield"><input type="checkbox" id="f-techco" checked> Technical co-founder present</label>
+      <label class="checkfield"><input type="checkbox" id="f-joint"> Prior joint experience</label>
+    </div>
+  </div>
+
+  <div class="dim-group">
+    <div class="dim-label"><span>4 · Sector / thesis fit</span><span>15 pts</span></div>
+    <div class="field">
+      <select id="f-sector">
+        <option value="core">Core of the thesis</option>
+        <option value="adjacent">Adjacent sub-sector</option>
+        <option value="peripheral">Peripheral fit</option>
+        <option value="outside">Outside the sector</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="dim-group">
+    <div class="dim-label"><span>5 · Co-investors</span><span>10 pts</span></div>
+    <div class="field">
+      <select id="f-coinv">
+        <option value="top_tier_committed">Top-tier lead committed</option>
+        <option value="mid_tier_committed">Mid-tier lead committed</option>
+        <option value="only_angels" selected>Only angels / accelerators</option>
+        <option value="none">None</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="dim-group">
+    <div class="dim-label"><span>6 · Geography / tranche</span><span>10 pts</span></div>
+    <div class="field">
+      <select id="f-geo">
+        <option value="spain_tt">Spain — documented tech transfer</option>
+        <option value="spain_no_tt">Spain — no formal tech transfer</option>
+        <option value="europe_with_es_link">Europe — Spanish link</option>
+        <option value="europe_only">Europe only</option>
+        <option value="outside_eu">Outside Europe</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="dim-group">
+    <div class="dim-label"><span>7 · Valuation / equity</span><span>10 pts</span></div>
+    <div class="field-row">
+      <div class="field"><label for="f-pm">Post-money (€)</label><input type="number" id="f-pm" min="0" step="500000" value="9000000"></div>
+      <label class="checkfield"><input type="checkbox" id="f-board"> Board seat confirmed</label>
+    </div>
+  </div>
+`;
+
+function readForm(){
+  return {
+    stage: document.getElementById("f-stage").value,
+    base_case_multiple: parseFloat(document.getElementById("f-moic").value) || 0,
+    exit_point_validated: document.getElementById("f-exit").checked,
+    arr_eur: parseFloat(document.getElementById("f-arr").value) || 0,
+    yoy_growth_pct: parseFloat(document.getElementById("f-growth").value) || 0,
+    churn_pct: parseFloat(document.getElementById("f-churn").value) || 0,
+    has_institutional_paid_contracts: document.getElementById("f-institutional").checked,
+    founder_prior_exit_in_health: document.getElementById("f-exithealth").checked,
+    founder_prior_exit_other_sector: document.getElementById("f-exitother").checked,
+    technical_cofounder_present: document.getElementById("f-techco").checked,
+    joint_prior_experience: document.getElementById("f-joint").checked,
+    sector_fit: document.getElementById("f-sector").value,
+    coinvestor_tier: document.getElementById("f-coinv").value,
+    geography: document.getElementById("f-geo").value,
+    post_money_eur: parseFloat(document.getElementById("f-pm").value) || 0,
+    board_seat_confirmed: document.getElementById("f-board").checked,
+  };
+}
+
+function writeForm(d){
+  document.getElementById("f-stage").value = d.stage;
+  document.getElementById("f-moic").value = d.base_case_multiple;
+  document.getElementById("f-exit").checked = d.exit_point_validated;
+  document.getElementById("f-arr").value = d.arr_eur;
+  document.getElementById("f-growth").value = d.yoy_growth_pct;
+  document.getElementById("f-churn").value = d.churn_pct;
+  document.getElementById("f-institutional").checked = d.has_institutional_paid_contracts;
+  document.getElementById("f-exithealth").checked = d.founder_prior_exit_in_health;
+  document.getElementById("f-exitother").checked = d.founder_prior_exit_other_sector;
+  document.getElementById("f-techco").checked = d.technical_cofounder_present;
+  document.getElementById("f-joint").checked = d.joint_prior_experience;
+  document.getElementById("f-sector").value = d.sector_fit;
+  document.getElementById("f-coinv").value = d.coinvestor_tier;
+  document.getElementById("f-geo").value = d.geography;
+  document.getElementById("f-pm").value = d.post_money_eur;
+  document.getElementById("f-board").checked = d.board_seat_confirmed;
+}
+
+function renderScorecard(result){
+  const el = document.getElementById("scorecard");
+  const lines = result.dims.map(d => `
+    <div class="score-line">
+      <div class="score-line-top">
+        <span class="score-line-name">${d.name}</span>
+        <span class="score-line-pts">${d.points}/${d.max}</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill" style="width:${(d.points/d.max*100).toFixed(0)}%"></div></div>
+      <div class="score-line-why">${d.why}</div>
+    </div>
+  `).join("");
+
+  const flagsHtml = result.flags.length ? `
+    <div class="flags">
+      <div class="flags-title">⚠ Blocking flags</div>
+      <ul>${result.flags.map(f => `<li>${f}</li>`).join("")}</ul>
+    </div>` : "";
+
+  el.innerHTML = `
+    ${lines}
+    <div class="total-row">
+      <span class="total-label">Total</span>
+      <span class="total-value">${result.total}<span>/100</span></span>
+    </div>
+    <div class="verdict-wrap">
+      <div class="stamp pulse" style="color:var(--${result.tier.css})">${result.tier.label}</div>
+    </div>
+    ${flagsHtml}
+  `;
+}
+
+function render(){
+  const deal = readForm();
+  const result = scoreDeal(deal);
+  renderScorecard(result);
+}
+
+function init(){
+  document.getElementById("form").innerHTML = FIELDS_HTML;
+
+  const examplesEl = document.getElementById("examples");
+  examplesEl.innerHTML = EXAMPLES.map(e =>
+    `<button class="example-btn" data-key="${e.key}">${e.label} <span class="tag">${e.tag}</span></button>`
+  ).join("");
+
+  examplesEl.querySelectorAll(".example-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const ex = EXAMPLES.find(e => e.key === btn.dataset.key);
+      writeForm(ex.data);
+      render();
+    });
+  });
+
+  document.getElementById("form").addEventListener("input", render);
+  document.getElementById("form").addEventListener("change", render);
+
+  // Load the Tier 2 example by default so the page never looks empty
+  writeForm(EXAMPLES[1].data);
+  render();
+}
+
+document.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>
