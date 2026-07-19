@@ -35,6 +35,30 @@ inbound decks, events, referrals — and needs to:
    iteratively, without rewriting from scratch on every update
 5. **Execute on the team's real tools** (CRM, file storage, communication) without
    friction from copying and pasting between systems
+   
+## Where this is headed
+
+This repository documents **Phase 0**: the dealflow core (screening → review →
+analysis → IC prep). It's the first module of a broader idea — an operating layer
+for how an early-stage fund runs, not just how it sources deals.
+
+The architecture is deliberately split so that the same pattern — domain knowledge
+in swappable skill files, a general-purpose engine underneath — can extend to
+adjacent fund workflows once the dealflow core is solid, without redesigning the
+system from scratch:
+
+- **Fund Intelligence workflows** (partially covered here already) extending toward
+  LP communication — quarterly updates, standardized portfolio metrics reporting
+- **Portfolio company tracking** post-investment — the same structured, auditable
+  approach applied to monitoring companies after the check is wired, not just
+  screening them before
+
+Neither of these is built yet. They're the natural next step once the dealflow core
+is mature — the same way a tool built to solve one workflow well often turns out to
+be the seed of something that connects a fund's entire operating cadence, not just a
+single task. The point isn't automating one thing in isolation; it's building the
+connective tissue so institutional knowledge compounds instead of resetting with
+every new hire or every new tool the team adopts.
 
 ## Architecture
 
