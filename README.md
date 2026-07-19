@@ -35,30 +35,6 @@ inbound decks, events, referrals — and needs to:
    iteratively, without rewriting from scratch on every update
 5. **Execute on the team's real tools** (CRM, file storage, communication) without
    friction from copying and pasting between systems
-   
-## Where this is headed
-
-This repository documents **Phase 0**: the dealflow core (screening → review →
-analysis → IC prep). It's the first module of a broader idea — an operating layer
-for how an early-stage fund runs, not just how it sources deals.
-
-The architecture is deliberately split so that the same pattern — domain knowledge
-in swappable skill files, a general-purpose engine underneath — can extend to
-adjacent fund workflows once the dealflow core is solid, without redesigning the
-system from scratch:
-
-- **Fund Intelligence workflows** (partially covered here already) extending toward
-  LP communication — quarterly updates, standardized portfolio metrics reporting
-- **Portfolio company tracking** post-investment — the same structured, auditable
-  approach applied to monitoring companies after the check is wired, not just
-  screening them before
-
-Neither of these is built yet. They're the natural next step once the dealflow core
-is mature — the same way a tool built to solve one workflow well often turns out to
-be the seed of something that connects a fund's entire operating cadence, not just a
-single task. The point isn't automating one thing in isolation; it's building the
-connective tissue so institutional knowledge compounds instead of resetting with
-every new hire or every new tool the team adopts.
 
 ## Architecture
 
@@ -138,6 +114,30 @@ prompt.
    per folder/board (what it can create, what it can only read) — this prevents an
    agent with broad access from modifying something outside its responsibility.
 
+## Where this is headed
+
+This repository documents **Phase 0**: the dealflow core (screening → review →
+analysis → IC prep). It's the first module of a broader idea — an operating layer
+for how an early-stage fund runs, not just how it sources deals.
+
+The architecture is deliberately split so that the same pattern — domain knowledge
+in swappable skill files, a general-purpose engine underneath — can extend to
+adjacent fund workflows once the dealflow core is solid, without redesigning the
+system from scratch:
+
+- **Fund Intelligence workflows** (partially covered here already) extending toward
+  LP communication — quarterly updates, standardized portfolio metrics reporting
+- **Portfolio company tracking** post-investment — the same structured, auditable
+  approach applied to monitoring companies after the check is wired, not just
+  screening them before
+
+Neither of these is built yet. They're the natural next step once the dealflow core
+is mature — the same way a tool built to solve one workflow well often turns out to
+be the seed of something that connects a fund's entire operating cadence, not just a
+single task. The point isn't automating one thing in isolation; it's building the
+connective tissue so institutional knowledge compounds instead of resetting with
+every new hire or every new tool the team adopts.
+
 ## Stack
 
 - **LLM**: Claude, via Claude Projects (persistent context) + MCP for connected tools
@@ -147,6 +147,32 @@ prompt.
 - **Founder notes / shared data rooms**: Notion via MCP
 - **Long document generation**: Python/Node to build `.docx` files with the fund's
   house format (Initial Assessments, IC memos)
+
+## Try it yourself
+
+The scoring rubric described in `skills/icp-definition.md` isn't just prose — it's
+precise enough to run. [`tools/icp_scorer.py`](tools/icp_scorer.py) is a small,
+dependency-free Python script that implements the same 7-dimension rubric and scores
+four fictional example deals, one per tier:
+
+```bash
+python3 tools/icp_scorer.py
+```
+
+```
+============================================================
+MedFlow Analytics (Tier 1 example)
+============================================================
+  Return potential (MOIC)      20/20  ████████████████████
+    └─ Base case clears the fund's top band with a validated exit point.
+  Commercial traction          19/20  ███████████████████░
+    └─ ARR >€500K, growing >100% YoY, churn <5% — top band.
+  ...
+  TOTAL                        95/100
+  TIER                         Tier 1 — Supernova
+```
+
+See [`tools/README.md`](tools/README.md) for usage details.
 
 ## Repository structure
 
@@ -166,6 +192,11 @@ docs/
 examples/
 └── sample-flow.md        An end-to-end flow with a 100% fictional company:
                            deck → screening → one-pager → Initial Assessment
+
+tools/
+├── icp_scorer.py          Runnable reference implementation of the scoring rubric
+├── sample_deals.json      Example fictional deals (one per tier, 1 through 4)
+└── README.md              Usage instructions
 ```
 
 ## Results (aggregated, not tied to specific deals)
