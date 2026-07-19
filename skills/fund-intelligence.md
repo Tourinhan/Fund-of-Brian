@@ -29,11 +29,11 @@ Three main functions:
 
 | Company | Tier | CRM Stage | Checkpoint | Signal that would trigger a Tier 1 upgrade | Status |
 |---|---|---|---|---|---|
-| Northstar Learning | Tier 2 | Watch soon | Next Dec | Confirmed VC lead + recurring MRR >€50K | No update |
-| CalmWave | Tier 2 | Watch soon | Next Dec | Pivot to B2B2C with European insurers | No update |
-| FieldSense | Tier 3 | Watch later | Next Nov | European expansion + real ARR >€1M | No update |
-| NeuroTrace | Tier 3 | Watch later | Next Oct | Round with quality co-investors + ARR >€500K | No update |
-| PulseCheck | Tier 3 | Watch later | **Overdue** | Seed round with co-investors + confirmed tech transfer | No update — decide: Pass |
+| Ederra Learning | Tier 2 | Watch soon | Next Dec | Confirmed VC lead + recurring MRR >€50K | No update |
+| Sereniq | Tier 2 | Watch soon | Next Dec | Pivot to B2B2C with European insurers | No update |
+| Corvexa | Tier 3 | Watch later | Next Nov | European expansion + real ARR >€1M | No update |
+| Neuravance | Tier 3 | Watch later | Next Oct | Round with quality co-investors + ARR >€500K | No update |
+| Vessalyn | Tier 3 | Watch later | **Overdue** | Seed round with co-investors + confirmed tech transfer | No update — decide: Pass |
 
 > ⚠️ Overdue = checkpoint has already passed. Requires an explicit decision to Pass
 > or renew the checkpoint with justification.

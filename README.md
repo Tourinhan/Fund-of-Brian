@@ -161,7 +161,7 @@ python3 tools/icp_scorer.py
 
 ```
 ============================================================
-MedFlow Analytics (Tier 1 example)
+Veltrix Analytics (Tier 1 example)
 ============================================================
   Return potential (MOIC)      20/20  ████████████████████
     └─ Base case clears the fund's top band with a validated exit point.

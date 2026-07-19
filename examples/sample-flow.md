@@ -1,7 +1,7 @@
 # End-to-end example (100% fictional)
 
 This example illustrates how the system chains screening → one-pager → Initial
-Assessment for a made-up company, "NovaCardia" — it does not correspond to any real
+Assessment for a made-up company, "Cortavia" — it does not correspond to any real
 company.
 
 ---
@@ -15,7 +15,7 @@ The user attaches a deck and says: *"I have a deck for this company, take a look
 The system:
 1. Asks for the source type → the user answers "Sector event"
 2. Reads `skills/deal-screening.md` and extracts from the deck:
-   - **NovaCardia** — Spain (Valencia), a spinoff from a university cardiovascular
+   - **Cortavia** — Spain (Valencia), a spinoff from a university cardiovascular
      research group
    - Product: remote post-discharge monitoring platform for cardiovascular
      patients, with predictive alerts
@@ -39,7 +39,7 @@ The system:
    | **Total** | **67/100** | **Tier 2 — Watch soon** |
 
 4. Creates the item in the pipeline (Tier 2, Watch soon) with the mapped fields
-5. Adds the follow-up comment: *"NovaCardia (Valencia) — university spinoff,
+5. Adds the follow-up comment: *"Cortavia (Valencia) — university spinoff,
    cardiovascular post-discharge monitoring. €85K ARR, 3 hospitals in paid pilot.
    Cardiologist CEO + technical CTO, missing a CCO. Seed €1.8M @ €9M pre, no lead
    yet. Score 67/100 — Tier 2, watch soon. Re-contact if they confirm a lead or

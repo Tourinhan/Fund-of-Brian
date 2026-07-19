@@ -326,7 +326,7 @@ def print_json(results: list[ScoreResult]) -> None:
 
 SAMPLE_DEALS = [
     Deal(
-        name="NovaCardia (Tier 2 example — see examples/sample-flow.md)",
+        name="Cortavia (Tier 2 example — see examples/sample-flow.md)",
         stage="seed",
         base_case_multiple=4.0,
         exit_point_validated=False,
@@ -346,7 +346,7 @@ SAMPLE_DEALS = [
         notes="Spanish cardiovascular monitoring spinoff, 3 hospitals in paid pilot.",
     ),
     Deal(
-        name="MedFlow Analytics (Tier 1 example)",
+        name="Veltrix Analytics (Tier 1 example)",
         stage="series_a",
         base_case_multiple=6.5,
         exit_point_validated=True,
@@ -366,7 +366,7 @@ SAMPLE_DEALS = [
         notes="Spanish clinical data interoperability platform, Series A.",
     ),
     Deal(
-        name="PulseWatch (Tier 3 example)",
+        name="Kestrion (Tier 3 example)",
         stage="seed",
         base_case_multiple=3.5,
         exit_point_validated=False,
@@ -387,7 +387,7 @@ SAMPLE_DEALS = [
               "early clinical pilot, no institutional paid contracts yet.",
     ),
     Deal(
-        name="QuickMeds (Tier 4 / Anti-ICP example)",
+        name="Zendrax (Tier 4 / Anti-ICP example)",
         stage="seed",
         base_case_multiple=1.4,
         exit_point_validated=False,

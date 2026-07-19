@@ -1,6 +1,6 @@
 [
   {
-    "name": "NovaCardia (Tier 2 example — see examples/sample-flow.md)",
+    "name": "Cortavia (Tier 2 example — see examples/sample-flow.md)",
     "stage": "seed",
     "base_case_multiple": 4.0,
     "exit_point_validated": false,
@@ -20,7 +20,7 @@
     "notes": "Spanish cardiovascular monitoring spinoff, 3 hospitals in paid pilot."
   },
   {
-    "name": "MedFlow Analytics (Tier 1 example)",
+    "name": "Veltrix Analytics (Tier 1 example)",
     "stage": "series_a",
     "base_case_multiple": 6.5,
     "exit_point_validated": true,
@@ -40,7 +40,7 @@
     "notes": "Spanish clinical data interoperability platform, Series A."
   },
   {
-    "name": "PulseWatch (Tier 3 example)",
+    "name": "Kestrion (Tier 3 example)",
     "stage": "seed",
     "base_case_multiple": 3.5,
     "exit_point_validated": false,
@@ -60,7 +60,7 @@
     "notes": "German wearable-based longevity monitoring, pre-seed graduating to seed, early clinical pilot, no institutional paid contracts yet."
   },
   {
-    "name": "QuickMeds (Tier 4 / Anti-ICP example)",
+    "name": "Zendrax (Tier 4 / Anti-ICP example)",
     "stage": "seed",
     "base_case_multiple": 1.4,
     "exit_point_validated": false,

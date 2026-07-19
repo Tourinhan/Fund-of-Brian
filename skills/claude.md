@@ -64,16 +64,16 @@ Executive summary:
 
 | Company | Country | Sector | Status |
 |---|---|---|---|
-| Vitalis | Italy | Telemedicine | Active portfolio |
-| DataPulse | Germany | Data aggregation | Active portfolio |
-| NurseLink | Spain | Healthcare workforce management | Active portfolio |
-| PedWatch | Spain | Remote pediatric monitoring | Active portfolio |
-| MindCircuit | Poland | Digital therapeutics / psycho-oncology | Active portfolio |
-| RehabWave | Spain | Digital rehabilitation | Active portfolio |
-| PathoScan | France | Diagnostics / AI digital pathology | Active portfolio |
-| CareIoT | Germany | MedTech / elderly care IoT | Active closing |
-| GlucoFlex | Switzerland | Digital therapeutics / insulin delivery | Active closing |
-| BioSignal Dx | Spain | Diagnostics / liquid biopsy | Active closing — IC exception |
+| Velunis | Italy | Telemedicine | Active portfolio |
+| Kelvory | Germany | Data aggregation | Active portfolio |
+| Nuvexa | Spain | Healthcare workforce management | Active portfolio |
+| Pedryn | Spain | Remote pediatric monitoring | Active portfolio |
+| Mendovia | Poland | Digital therapeutics / psycho-oncology | Active portfolio |
+| Rehavion | Spain | Digital rehabilitation | Active portfolio |
+| Pathovyx | France | Diagnostics / AI digital pathology | Active portfolio |
+| Carovex | Germany | MedTech / elderly care IoT | Active closing |
+| Glucovia | Switzerland | Digital therapeutics / insulin delivery | Active closing |
+| Sentrivo Dx | Spain | Diagnostics / liquid biopsy | Active closing — IC exception |
 
 > For full detail on each company: `skills/fund-intelligence.md`
 

@@ -145,9 +145,9 @@ irrelevant.
 | Points | Description | Illustrative example |
 |---|---|---|
 | 18–20 | Base case >5x at Series A or >10x at Seed with an identified exit point and validated comparable. | — |
-| 12–17 | Base case in the 3–5x Series A / 7–10x Seed range. The upside exists but requires a non-guaranteed event. | Aurora Health (base ~4x without a regulatory event, upside 6–10x if the clinical trial is positive) — 14 pts |
+| 12–17 | Base case in the 3–5x Series A / 7–10x Seed range. The upside exists but requires a non-guaranteed event. | Luminae (base ~4x without a regulatory event, upside 6–10x if the clinical trial is positive) — 14 pts |
 | 6–11 | Base case 2–3x. Fund-returning outcome depends on optimistic scenarios. | — |
-| 0–5 | Base case <2x or not calculable due to lack of data. Blocks advancement to Analysis unless a formal IC exception is granted. | BioSignal Dx (exception approved for portfolio continuity, not standard MOIC) — 4 pts |
+| 0–5 | Base case <2x or not calculable due to lack of data. Blocks advancement to Analysis unless a formal IC exception is granted. | Sentrivo Dx (exception approved for portfolio continuity, not standard MOIC) — 4 pts |
 
 **Blocking flag**: a score of 0–5 in this dimension blocks advancement to Analysis
 unless a formal exception is approved by partners.
@@ -159,7 +159,7 @@ unless a formal exception is approved by partners.
 | Points | Description | Illustrative example |
 |---|---|---|
 | 18–20 | ARR >€500K growing >100% YoY, or institutional contracts with TCV >€1M. Churn <5%. | — |
-| 12–17 | ARR €100K–€500K with demonstrable growth, or paid pilots with 2+ institutional players. | Aurora Health (€240K ARR, NRR 130–140%, 0% churn) — 16 pts. ClearMed (early US traction, revenue still minimal) — 12 pts |
+| 12–17 | ARR €100K–€500K with demonstrable growth, or paid pilots with 2+ institutional players. | Luminae (€240K ARR, NRR 130–140%, 0% churn) — 16 pts. Deprexa (early US traction, revenue still minimal) — 12 pts |
 | 6–11 | Incipient revenue <€100K or unpaid pilots but LOIs with relevant players. | — |
 | 0–5 | Pre-revenue with no contracts or paid pilots. | — |
 
