@@ -1,4 +1,4 @@
-# GTM Brain — Agentic AI Ops for VC Dealflow
+# Investment OS — Agentic AI Ops for VC Dealflow
 
 > **Note**: this repository is an architecture case study. All fund names, company
 > names, people, and internal identifiers are fictional. The real system this is
@@ -9,7 +9,7 @@
 
 ## What this is
 
-**GTM Brain** is an agentic AI ops system that connects an LLM (Claude) to the
+**Investment OS** is an agentic AI ops system that connects an LLM (Claude) to the
 operational tools of a venture capital fund — an internal file repository, a
 CRM-type system, and Notion — to run the investment pipeline end to end: from
 screening a new company to preparing the Investment Committee (IC).
@@ -86,7 +86,7 @@ prompt.
 
 ## What the system does in practice
 
-| Funnel stage | What the Brain automates |
+| Funnel stage | What Investment OS automates |
 |---|---|
 | **Screening** | Receives a deck or a list of companies → classifies against the ICP → scores with a 7-dimension rubric (0–100 pts) → creates the item in the CRM with all fields → adds the summary as a comment |
 | **Review** | Generates the one-pager for the weekly meeting from deck + founder call, distinguishing verified data from assumption, without hiding red flags |

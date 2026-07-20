@@ -1,4 +1,4 @@
-# claude.md — GTM Brain for Solstice Health Ventures (fictional)
+# claude.md — Investment OS for Solstice Health Ventures (fictional)
 
 > This file is the entry point. Always read it before any task.
 > All detail lives in the /skills files.

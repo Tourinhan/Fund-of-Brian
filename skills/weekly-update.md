@@ -1,4 +1,4 @@
-# skills/weekly-update.md — GTM Brain Weekly Workflow
+# skills/weekly-update.md — Investment OS Weekly Workflow
 
 > This workflow integrates the system into the fund's real operations.
 > Cadence: fixed weekly meeting with partners on Fridays. The automated weekly
