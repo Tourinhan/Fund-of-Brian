@@ -7,55 +7,61 @@ single prompt: investment criteria, workflows, decision history, all together. T
 fails in practice for several reasons:
 
 1. **It's not safely editable.** If a scoring criterion changes, someone has to find
-   and edit the right block within a giant piece of text, risking breaking something
-   else unintentionally.
+and edit the right block within a giant piece of text, risking breaking something
+else unintentionally.
 2. **It doesn't distinguish who can change what.** A monolithic prompt has no notion
-   of "the system updates this after learning something new" vs. "only the fund's
-   partners change this."
+of "the system updates this after learning something new" vs. "only the fund's
+partners change this."
 3. **It's not auditable.** There's no way to know when a criterion changed or why,
-   unless someone maintains a separate changelog — which in practice nobody does.
+unless someone maintains a separate changelog — which in practice nobody does.
 4. **It mixes definition with execution.** "What makes a good deal" and "how do you
-   execute the screening of a deal" are different questions with different change
-   cycles — the definition changes a few times a year, execution gets adjusted
-   constantly with small learnings.
+execute the screening of a deal" are different questions with different change
+cycles — the definition changes a few times a year, execution gets adjusted
+constantly with small learnings.
 
 ## The alternative pattern: files with their own owner and lifecycle
 
 Each piece of knowledge lives in its own file, with:
 
 - **A single, explicit purpose** (see the header of each skill in this repo: "use
-  this skill for...")
+this skill for...")
+
 - **Explicit access rules** — some files are read-only for the model (e.g.
-  `icp-definition.md` in its "official" form is only edited by the human team when
-  they decide to change the investment criteria), others get updated by the system
-  itself after each cycle (e.g. the watchlist inside `fund-intelligence.md`)
+`icp-definition.md` in its "official" form is only edited by the human team when
+they decide to change the investment criteria), others get appended to by the
+system itself after each cycle (e.g. the discarded/approved deal history inside
+`fund-intelligence.md` — append-only, never a cached copy of something a connected
+tool already tracks live; live pipeline status is queried from the CRM, never
+stored here)
+
 - **A versioned learning history at the end of the file** — every time a nuance is
-  discovered or a criterion is corrected, a row gets added with date and reason:
+discovered or a criterion is corrected, a row gets added with date and reason:
 
-  ```markdown
-  | Date | Learning |
-  |---|---|
-  | Jun 2026 | Category X only applies to already-diagnosed conditions; preventive platforms → a different category |
-  | Jul 2026 | Correction: category Y is not limited to patient-facing products — it applies equally to B2B solutions |
-  ```
+```
+| Date | Learning |
+|---|---|
+| Jun 2026 | Category X only applies to already-diagnosed conditions; preventive platforms → a different category |
+| Jul 2026 | Correction: category Y is not limited to patient-facing products — it applies equally to B2B solutions |
+```
 
-  This is the key difference from "editing the prompt": the previous criterion
-  doesn't disappear without a trace. It stays documented *that* it existed, *why* it
-  was changed, and *when* — useful both for auditing past decisions and for the
-  model itself to understand the reasoning behind the current rule, not just the
-  rule in isolation.
+    This is the key difference from "editing the prompt": the previous criterion
+doesn't disappear without a trace. It stays documented *that* it existed, *why* it
+was changed, and *when* — useful both for auditing past decisions and for the
+model itself to understand the reasoning behind the current rule, not just the
+rule in isolation.
 
 ## Separating definition from execution
 
 In this system:
+
 - `icp-definition.md` answers **"what is a good deal?"** — the most stable layer,
-  changes a few times a year
+changes a few times a year
 - `deal-screening.md` / `deal-analysis.md` answer **"how do I execute each stage of
-  the process?"** — these change more often, every time an operational nuance is
-  learned (e.g. how to map a specific CRM field, what to do when data is missing)
+the process?"** — these change more often, every time an operational nuance is
+learned (e.g. how to map a specific CRM field, what to do when data is missing)
 - `fund-intelligence.md` answers **"what do I do with what I already evaluated and
-  didn't move forward?"** — it lives on its own time cycle (monthly/weekly),
-  separate from the initial evaluation cycle
+didn't move forward?"** — it lives on its own time cycle (monthly/weekly),
+separate from the initial evaluation cycle
 
 This separation matters because it lets the team edit one aspect of the system
 without touching the others, and lets the model know which file to consult based on
@@ -70,7 +76,7 @@ early."** These are different judgments:
 
 - "I found no information" = a limit of the search method
 - "It's Tier 3 (interesting but too early)" = a positive conclusion that requires
-  evidence
+evidence
 
 Without this distinction documented explicitly as a rule in the skill, a search
 failure (generic name, typo in the source list) could silently translate into a
@@ -78,6 +84,21 @@ classification that, under the system's own decay rules, ended up in automatic
 rejection after 12 months without anyone reviewing it. This kind of rule — born from
 an observed real case — is exactly what goes into the corresponding skill's learning
 history, so it doesn't happen again.
+
+## A second golden rule, learned the hard way: don't cache what a connected tool already tracks live
+
+An earlier version of `fund-intelligence.md` kept its own table of watchlist company
+status, in parallel to the real status in the CRM. It drifted out of sync within
+weeks — the system flagged the discrepancy repeatedly, and it stayed unfixed,
+because hand-correcting a doc isn't a sustainable process. The fix wasn't a better
+sync process — it was removing the cached copy entirely. Now the file stores only
+what the CRM doesn't: checkpoints, decay reasoning, revival criteria. Status itself
+is always queried live.
+
+This is the same underlying pattern as the first golden rule, applied one layer up:
+just as absence of data shouldn't silently become a negative conclusion, a
+convenient local copy of live state shouldn't silently become the thing people trust
+over the source it was copied from.
 
 ## Summary
 

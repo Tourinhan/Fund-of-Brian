@@ -5,15 +5,17 @@
 ### 1. Knowledge layer (`skills/`)
 
 Versioned markdown files that define:
+
 - Who the fund is, its mandate and constraints (geography, ticket size, sector)
-- What an ideal deal looks like and how it's scored (a 0–100 point rubric across 7
-  dimensions)
+- What an ideal deal looks like and how it's scored (a 7-category weighted base
+  score plus a moat-based multiplier — see `skills/icp-definition.md`)
 - How each stage of the funnel is executed (screening → review → analysis → IC)
 - How knowledge is managed over the long term (decay, revival, watchlist)
 
 This layer doesn't live in a fixed system prompt — it lives in files that the model
 explicitly reads at the start of a session (`claude.md` as the entry point, which
 references the rest). This allows:
+
 - The human team to edit investment criteria without touching code or prompts
 - The model to explicitly cite which part of the criteria a decision is based on
 - The change history to be auditable (who changed which criterion, and why)
@@ -26,24 +28,29 @@ produces the output (document, CRM item, summary) following the format defined i
 corresponding skill.
 
 Relevant design points:
+
 - **Write permissions scoped by tool and folder/board.** The model has explicit
-  rules about what it can create/modify and what is strictly read-only (e.g. the
-  investment criteria files themselves — the model reads them but never edits them
-  on its own initiative).
+rules about what it can create/modify and what is strictly read-only (e.g. the
+investment criteria files themselves — the model reads them but never edits them
+on its own initiative).
 - **No deletion, ever.** The system has no permission to delete anything in any
-  connected tool — if something gets placed wrong, a human fixes it.
+connected tool — if something gets placed wrong, a human fixes it.
 - **Explicit confirmation before irreversible actions** (sending an email, publishing
-  a decision) — the model prepares the draft, the human approves it.
+a decision) — the model prepares the draft, the human approves it.
+- **No cached state for anything the CRM already tracks live** — the model queries
+the CRM for current status rather than storing a parallel copy. A cached copy is
+only acceptable for knowledge no connected tool holds (reasoning, objections,
+qualitative checkpoints).
 
 ### 3. Tools layer (MCP)
 
 Three connected systems via MCP (Model Context Protocol), each with a distinct role:
 
-| Tool | Role | What it stores |
-|---|---|---|
-| **CRM** | Source of truth for the pipeline | Status of each company, structured fields (sector, geography, round), follow-up comments |
-| **Internal file repository** | Document repository | Initial Assessments, one-pagers, IC memos, historical logs |
-| **Notion** | Shared space with founders / data rooms | Founder notes, documentation shared by companies in process |
+| Tool                         | Role                                    | What it stores                                                                           |
+| ---------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------ |
+| **CRM**                       | Source of truth for the pipeline          | Status of each company, structured fields (sector, geography, round), follow-up comments   |
+| **Internal file repository**   | Document repository                       | Initial Assessments, one-pagers, IC memos, historical logs                                 |
+| **Notion**                     | Shared space with founders / data rooms   | Founder notes, documentation shared by companies in process                                |
 
 The model cross-references information across the three when the task requires it —
 for example, when preparing an Initial Assessment, it may need to read the CRM
@@ -61,7 +68,7 @@ in Notion, all within the same working session.
         │
 4. Extracts fields from the deck (sector, geography, traction, team, round)
         │
-5. Applies the rubric from skills/icp-definition.md → 0–100 score + Tier
+5. Applies the model from skills/icp-definition.md → base score × moat multiplier → Tier
         │
 6. Creates the item in the CRM with the mapped fields
         │
