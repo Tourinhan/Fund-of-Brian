@@ -25,24 +25,39 @@ The system:
      biomedical signal processing, no CCO yet
    - Round: Seed, €1.8M target, €9M pre-money, no lead confirmed, two business
      angels with a healthcare track record already in
-3. Applies the rubric from `skills/icp-definition.md`:
+3. Applies the model from `skills/icp-definition.md`:
 
-   | Dimension | Score | Reason |
+   **Base score (7 weighted categories, each scored 1–10):**
+
+   | Category | Score | Weight | Points | Reason |
+   |---|---|---|---|---|
+   | Team | 6/10 | 30% | 18 | Strong founder-market fit (cardiologist CEO) but no prior exit and missing a CCO |
+   | Opportunity size | 7/10 | 25% | 17.5 | Real institutional market, expansion path plausible but unproven beyond 3 hospitals |
+   | Product & IP | 6/10 | 15% | 9 | Predictive alerts add real differentiation, no filed IP yet |
+   | Business model | 6/10 | 10% | 6 | Pilot-based revenue, scalable model not yet proven at more sites |
+   | Traction | 6/10 | 10% | 6 | €85K ARR with paid institutional pilots, still small scale |
+   | Competitors | 5/10 | 5% | 2.5 | Moderately competitive monitoring space, no clear moat yet |
+   | Round economics | 5/10 | 5% | 2.5 | €9M pre-money, ~7% equity with standard ticket, no lead confirmed |
+   | **Base score** | | | **61.5** | |
+
+   **Moat multiplier (4 moats, scored 1–10 on credibility of path):**
+
+   | Moat | Score | Reason |
    |---|---|---|
-   | MOIC | 13/20 | Base case ~4x, depends on expansion to more hospitals — a non-guaranteed event |
-   | Traction | 13/20 | €85K ARR with paid institutional pilots, still small scale |
-   | Team | 8/15 | Strong founder-market fit (cardiologist CEO) but no prior exit and missing a CCO |
-   | Sector | 13/15 | Exact core of the thesis — monitoring + healthcare infrastructure |
-   | Co-investors | 4/10 | Only business angels, no VC lead confirmed |
-   | Geography | 9/10 | Spanish with documented tech transfer |
-   | Valuation | 7/10 | €9M post-money, estimated equity ~7% with the standard ticket |
-   | **Total** | **67/100** | **Tier 2 — Watch soon** |
+   | Intangible assets | 5 | Some IP potential in the prediction algorithm, unproven |
+   | Switching costs | 6 | Once integrated into hospital care pathways, credible lock-in |
+   | Network effects | 2 | One-sided monitoring product, no multi-sided dynamic |
+   | Cost advantages | 3 | No meaningful scale economics at this stage |
+
+   Average = 4.0 → multiplier = 0.75 + (4.0 − 1)/12 = **1.00x**
+
+   **Final score = 61.5 × 1.00 = 61.5 → Tier 2, Watch soon**
 
 4. Creates the item in the pipeline (Tier 2, Watch soon) with the mapped fields
 5. Adds the follow-up comment: *"Cortavia (Valencia) — university spinoff,
    cardiovascular post-discharge monitoring. €85K ARR, 3 hospitals in paid pilot.
    Cardiologist CEO + technical CTO, missing a CCO. Seed €1.8M @ €9M pre, no lead
-   yet. Score 67/100 — Tier 2, watch soon. Re-contact if they confirm a lead or
+   yet. Score 61.5 — Tier 2, watch soon. Re-contact if they confirm a lead or
    MRR >€15K."*
 6. Notes: *"This deal doesn't require updating the ICP — it fits the already
    defined criteria in a standard way."*
@@ -53,11 +68,27 @@ The founder writes in to announce a partnership with a private insurer and that 
 European health fund is evaluating leading the Seed round.
 
 The system, following `skills/fund-intelligence.md`:
-1. Identifies the signal as **strong** (a reference co-investor evaluating + a new
-   institutional partnership)
-2. Recalculates: +20 pts (partnership) — the score rises to 87/100
-3. Flags the company for an immediate review for a Tier 1 upgrade
-4. Updates the status in the watchlist and recommends moving to Reviewing
+1. Identifies the signal as **strong** (a reference co-investor evaluating to lead +
+   a new institutional partnership)
+2. Re-scores the categories the signal actually changes — it doesn't add flat
+   points to the old total, since the score isn't additive anymore:
+   - **Team** 6→9 (a credible lead evaluating the round raises confidence in the
+     founders' ability to close quality backers)
+   - **Traction** 6→8 (an institutional insurer partnership is a materially
+     stronger signal than pilot-stage hospital contracts)
+   - **Opportunity size** 7→8 (the insurer channel plausibly expands reach beyond
+     direct hospital sales)
+   - **Business model** 6→7 (the partnership validates a second monetization path)
+   - Switching costs moat nudges 6→7 (an insurer relationship further embeds the
+     product into the care pathway)
+   - Everything else unchanged
+3. New base score: Team 27 + Opportunity size 20 + Product&IP 9 + Business model 7
+   + Traction 8 + Competitors 2.5 + Round economics 2.5 (unchanged) = **76.0**. New
+   moat average (5+7+2+3)/4 = 4.25 → multiplier 0.75 + (4.25−1)/12 = **1.0208x**.
+   Final score = 76.0 × 1.0208 ≈ **77.6 → crosses into Tier 1**
+4. Flags the company for an immediate review for a Tier 1 upgrade — the recalculated
+   score, not the original one, is what triggers the flag
+5. Updates the status in the watchlist and recommends moving to Reviewing
 
 ## Step 3 — Review: one-pager
 
