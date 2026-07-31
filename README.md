@@ -5,7 +5,7 @@
 > based on operates on confidential data belonging to a venture capital fund and is
 > not published — what's documented here is the design, not the content.
 
-> **Status (jul 2026)**: Fase 1, solo-builder. Dealflow Screener is in production.
+> **Status**: Fase 1, solo-builder. Dealflow Screener is in production.
 > Review one-pager and Analysis/IC memo are under active development toward
 > IC-grade — not there yet, and the README won't pretend otherwise. Fund
 > Intelligence runs decay/revival tracking today; backfilling the historical
