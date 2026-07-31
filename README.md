@@ -7,8 +7,9 @@
 
 > **Status (jul 2026)**: Fase 1, solo-builder. Dealflow Screener is in production.
 > Review one-pager and Analysis/IC memo are under active development toward
-> IC-grade. Fund Intelligence runs decay/revival tracking today; backfilling the
-> historical archive with structured scoring is in progress. See
+> IC-grade — not there yet, and the README won't pretend otherwise. Fund
+> Intelligence runs decay/revival tracking today; backfilling the historical
+> archive with structured scoring is in progress. See
 > [`docs/roadmap.md`](docs/roadmap.md) for the full picture, including what's
 > deliberately not built yet and why.
 
@@ -19,7 +20,8 @@
 **GTM Brain** is an agentic AI ops system that connects an LLM (Claude) to the
 operational tools of a venture capital fund — an internal file repository, a
 CRM-type system, and Notion — to run the investment pipeline: from screening a new
-company toward preparing the Investment Committee (IC).
+company toward preparing the Investment Committee (IC). No oracle, no crystal ball —
+just a system that reads what the fund already knows and applies it consistently.
 
 It's not a chatbot with extra context. It's a layer of structured operational
 knowledge (investment criteria, scoring rubrics, decay rules, workflows) plus a set
@@ -141,6 +143,8 @@ anchors and calibration examples.
 
 ## Design principles applied
 
+None of these are aspirational. Each one exists because something broke without it.
+
 1. **Auditable scoring, not a black box**: the rubric breaks the decision down into
 weighted, independently-scored dimensions with concrete anchors — the goal is that
 two people evaluating the same deal land within a few points of each other, not
@@ -200,7 +204,8 @@ examples/
 ## Where this is going
 
 The phases below are vision, not shipped product — gated behind explicit triggers,
-not calendar dates. Full detail, including why each trigger is what it is, in
+not calendar dates. Aspiration with a trigger attached, not a promise with a date.
+Full detail, including why each trigger is what it is, in
 [`docs/roadmap.md`](docs/roadmap.md).
 
 - **Now (Fase 1)**: pipeline core to IC-grade, solo-builder, one track of heavy
@@ -222,18 +227,21 @@ direction, not shipped functionality.)*
 
 ## Results (what's actually measurable today)
 
-- First-draft Initial Assessments in a single guided iteration session, for the
-Screening stage that's in production
+- Screening — the stage actually in production — goes from deck to a scored,
+fully-fielded CRM item without an analyst touching a form
 - Reproducible ICP scoring across sessions — same deal, same inputs, stable score
 - Systematic decay tracking: every watchlist company gets an explicit checkpoint
 and expected signal instead of relying on someone remembering. This surfaces gaps —
 it doesn't eliminate them by itself; someone still has to act on what the system
-flags, and the architecture principle above exists because that didn't always
-happen in practice.
+flags, and design principle 6 above exists because that didn't always happen in
+practice
 - Full traceability: every scoring decision and every criterion change is documented
 with a date and reason, not just kept in the analyst's head
+
+Nothing above is claimed for Review, Analysis, or IC prep — those are still 🔧, and
+this repo would rather undersell than repeat the mistake principle 6 is named after.
 
 ---
 
 *This repository is a technical/product portfolio piece. It does not represent or
-contain information from any real investment fund.*
+contain information from any real investment fund. Not a prophet. Just auditable.*
