@@ -48,29 +48,28 @@ friction from copying and pasting between systems
 ## Architecture
 
 ```
-   ┌─────────────────────────────────────┐
-   │         Knowledge layer                │
-   │  (skills/ — read at session start)      │
-   │                                        │
-   │  • Fund profile and mandate             │
-   │  • ICP definition + scoring rubric      │
-   │  • Workflows per funnel stage           │
-   │  • Decay / revival rules                │
-   │  • Versioned learning history            │
-   └───────────────┬───────────────────────┘
-                   │
-   ┌───────────────▼───────────────────────┐
-   │              LLM (Claude)               │
-   │   orchestrates reading + reasoning +    │
-   │   writing across connected tools         │
-   └───┬───────────────┬──────────────┬─────┘
-       │               │              │
-┌──────▼─────┐  ┌──────▼──────┐  ┌────▼─────┐
-│  Internal    │  │  CRM (MCP)  │  │  Notion  │
-│  Files       │  │  (pipeline, │  │ (founder │
-│ (documents,  │  │  scoring,   │  │  notes,  │
-│  IAs, memos) │  │  updates)   │  │data room)│
-└──────────────┘  └─────────────┘  └──────────┘
+                 ┌───────────────────────────────────┐
+                 │          Knowledge layer          │
+                 │ (skills/ — read at session start) │
+                 │                                   │
+                 │    • Fund profile and mandate     │
+                 │ • ICP definition + scoring rubric │
+                 │   • Workflows per funnel stage    │
+                 │      • Decay / revival rules      │
+                 │   • Versioned learning history    │
+                 └───────────────────────────────────┘
+                                   │
+          ┌────────────────────────────────────────────────┐
+          │                  LLM (Claude)                  │
+          │       orchestrates reading + reasoning +       │
+          │         writing across connected tools         │
+          └──┬─────────────────────┬─────────────────────┬─┘
+             │                     │                     │
+   ┌─────────▼────────┐  ┌─────────▼────────┐  ┌─────────▼────────┐
+   │  Internal Files  │  │    CRM (MCP)     │  │      Notion      │
+   │   (documents,    │  │    (pipeline,    │  │ (founder notes,  │
+   │   IAs, memos)    │  │scoring, updates) │  │    data room)    │
+   └──────────────────┘  └──────────────────┘  └──────────────────┘
 ```
 
 See [`docs/architecture.md`](docs/architecture.md) for the detail of each layer.
