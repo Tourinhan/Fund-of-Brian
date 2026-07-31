@@ -27,10 +27,10 @@ Meets ALL of these criteria:
 
 **Geography and company type**
 - Spanish tranche: Spanish company with a documented tech-transfer link (university
-  spinoff, IP license from a research center, documented R&D collaboration). Spanish
-  companies can make up at most ~90% of the total portfolio.
+spinoff, IP license from a research center, documented R&D collaboration). Spanish
+companies can make up at most ~90% of the total portfolio.
 - European tranche: clear European leader in its space, no tech-transfer
-  restriction.
+restriction.
 
 **Traction**
 - Product in market (not just an MVP on paper)
@@ -44,7 +44,7 @@ Meets ALL of these criteria:
 
 **Co-investors**
 - Quality co-investors already committed or interested, OR potential to attract
-  top-tier CVCs and VCs to the round
+top-tier CVCs and VCs to the round
 
 **Board**
 - Board seat at Series A as a condition (observer seat at Seed as a minimum)
@@ -91,9 +91,9 @@ months → automatic Move to Pass.
 - ❌ No possibility of a board seat, not even an observer seat
 - ❌ Geography exclusively outside Spain/Europe with no European expansion plan
 - ❌ Direct competition from large players building the same solution internally
-  with no clear technological edge for the startup
+with no clear technological edge for the startup
 - ❌ Dependence on a single client representing >70% of revenue with no
-  diversification plan
+diversification plan
 
 **Golden rule:** Tier 4 never gets revived. Move to Pass is permanent.
 
@@ -101,12 +101,12 @@ months → automatic Move to Pass.
 
 ## Decay and revival rules
 
-| Tier | CRM stage | Expected re-contact | No signal → | Revival possible |
-|---|---|---|---|---|
-| Tier 1 | New / Reviewing / Analysis | Immediate | Pass if it doesn't fit at call or data room stage | Not applicable |
-| Tier 2 | Watch soon | <6 months | Review downgrade to Tier 3 or Pass | Yes |
-| Tier 3 | Watch later | 6-12 months | Automatic Pass | Yes — if they raise a round within <12 months |
-| Tier 4 | Pass | — | — | Never |
+| Tier   | CRM stage                  | Expected re-contact | No signal →                                       | Revival possible                              |
+| ------ | --------------------------- | -------------------- | --------------------------------------------------- | ------------------------------------------------ |
+| Tier 1 | New / Reviewing / Analysis  | Immediate             | Pass if it doesn't fit at call or data room stage    | Not applicable                                    |
+| Tier 2 | Watch soon                  | <6 months             | Review downgrade to Tier 3 or Pass                   | Yes                                               |
+| Tier 3 | Watch later                 | 6-12 months           | Automatic Pass                                       | Yes — if they raise a round within <12 months     |
+| Tier 4 | Pass                        | —                     | —                                                    | Never                                             |
 
 **Revival signals (trigger a tier review):**
 - Founder re-contacts to announce a new round
@@ -116,129 +116,105 @@ months → automatic Move to Pass.
 
 ---
 
-## ICP scoring rubric (0–100 points)
+## ICP scoring model — 7 weighted categories + moat multiplier
 
-> This rubric converts the qualitative ICP criteria into a reproducible score. The
-> goal isn't to automate the decision but to make the score auditable: two different
-> analysts evaluating the same deal should land within ±5 points of each other.
+> **Change from the previous rubric**: this replaces the earlier 0–100 point, 7-*dimension*
+> model (Return potential, Traction, Team, Sector fit, Co-investors, Geography,
+> Valuation) with a 7-*category* base score plus a separate moat-based multiplier.
+> The old dimensions aren't gone — they're absorbed into the new categories (e.g.
+> prior exits and co-investor quality now live under Team; MOIC and valuation now
+> live under Round economics). See evolution history for why.
 
-### Dimensions and weights
+**Step 1 — Base score.** Each category is scored independently, weighted, and
+summed to a base score out of 100.
 
-| Dimension | Max weight | What it measures |
-|---|---|---|
-| 1. Return potential (MOIC) | 20 pts | Does the base case clear the fund's minimum return? |
-| 2. Commercial traction | 20 pts | Is there evidence the market is paying for this? |
-| 3. Team | 15 pts | Can this team execute all the way to exit? |
-| 4. Sector / Thesis fit | 15 pts | Is it Digital Health and does it fit the fund's wheelhouse? |
-| 5. Co-investors | 10 pts | Is there external validation of quality? |
-| 6. Geography / Tranche | 10 pts | Does it fit the fund's mandate and available tickets? |
-| 7. Valuation / Equity | 10 pts | Do the terms allow getting >5% with our ticket? |
-| **TOTAL** | **100 pts** | |
+| Category         | Weight | What it absorbs from the old rubric                          |
+| ----------------- | ------ | --------------------------------------------------------------- |
+| Team               | 30%    | Founder background, prior exits, co-investor quality (as a proxy for founder network) |
+| Opportunity size   | 25%    | TAM/SAM/SOM, market growth, geographic reach                    |
+| Product & IP       | 15%    | Technical defensibility, patents, product maturity               |
+| Business model     | 10%    | Revenue model clarity, unit economics, scalability                |
+| Traction           | 10%    | Commercial traction (contracts, ARR, pilots, partnerships)        |
+| Competitors        | 5%     | Competitive landscape, differentiation, space saturation          |
+| Round economics    | 5%     | Return potential (MOIC), valuation, equity %, dilution risk       |
 
----
+**Step 2 — Moat multiplier.** Score 4 moats (Dorsey framework: intangible assets,
+switching costs, network effects, cost advantages) 1–10 each, on the **credibility
+of the path** to that moat — not whether it exists today. Average the 4 scores and
+map linearly to a multiplier between 0.75x (average 1) and 1.50x (average 10):
 
-### 1. Return potential (MOIC) — 20 pts
+`multiplier = 0.75 + (average − 1) / 12`
 
-The hardest filter. If the base case doesn't clear the minimum return, the rest is
-irrelevant.
+**Step 3 — Final score.** Final score = Base score × Moat multiplier. This is
+deliberately uncapped above 100 — a strong base with strong moats can exceed it.
+Tier thresholds below read as minimums, not closed ranges.
 
-| Points | Description | Illustrative example |
-|---|---|---|
-| 18–20 | Base case >5x at Series A or >10x at Seed with an identified exit point and validated comparable. | — |
-| 12–17 | Base case in the 3–5x Series A / 7–10x Seed range. The upside exists but requires a non-guaranteed event. | Luminae (base ~4x without a regulatory event, upside 6–10x if the clinical trial is positive) — 14 pts |
-| 6–11 | Base case 2–3x. Fund-returning outcome depends on optimistic scenarios. | — |
-| 0–5 | Base case <2x or not calculable due to lack of data. Blocks advancement to Analysis unless a formal IC exception is granted. | Sentrivo Dx (exception approved for portfolio continuity, not standard MOIC) — 4 pts |
+### Worked example (Luminae)
 
-**Blocking flag**: a score of 0–5 in this dimension blocks advancement to Analysis
-unless a formal exception is approved by partners.
+| Moat               | Score | Rationale                                                        |
+| ------------------- | ----- | ------------------------------------------------------------------ |
+| Intangible assets    | 6     | Some patents in process, regulatory differentiation planned, not yet proven |
+| Switching costs       | 7     | Once integrated into clinical workflow, credible path to high switching cost |
+| Network effects        | 3     | Mostly one-sided value proposition, not a multi-sided marketplace   |
+| Cost advantages         | 5     | Some long-term scale economics credible via data flywheel, no strong edge yet |
 
----
+Average = 5.25 → multiplier = 0.75 + (5.25 − 1)/12 = **1.10x**
 
-### 2. Commercial traction — 20 pts
+Base score 68/100 → Final score = 68 × 1.10 = **74.8**
 
-| Points | Description | Illustrative example |
-|---|---|---|
-| 18–20 | ARR >€500K growing >100% YoY, or institutional contracts with TCV >€1M. Churn <5%. | — |
-| 12–17 | ARR €100K–€500K with demonstrable growth, or paid pilots with 2+ institutional players. | Luminae (€240K ARR, NRR 130–140%, 0% churn) — 16 pts. Deprexa (early US traction, revenue still minimal) — 12 pts |
-| 6–11 | Incipient revenue <€100K or unpaid pilots but LOIs with relevant players. | — |
-| 0–5 | Pre-revenue with no contracts or paid pilots. | — |
+### Category anchors (illustrative, not exhaustive)
 
----
+**Team (30%)** — 8–10: serial founder with a prior healthcare exit + technical
+co-founder with direct background. 5–7: first-time founder with deep healthcare
+background, or a founder with a prior non-healthcare exit. 1–4: no relevant
+background in healthcare or technology.
 
-### 3. Team — 15 pts
+**Opportunity size (25%)** — 8–10: large, growing TAM with credible SOM capture
+path. 5–7: solid market, but growth or capture path needs validation. 1–4: niche
+or shrinking market.
 
-| Points | Description |
-|---|---|
-| 13–15 | Serial founder with a prior exit in healthcare + technical co-founder with direct background. |
-| 9–12 | Founder with a prior exit (outside healthcare) OR deep healthcare background + a relevant technical co-founder. |
-| 5–8 | First-time founder with experience in the sector but no exit. Gaps in a key function. |
-| 0–4 | No relevant background in healthcare or technology, or critical gaps with no plan to resolve them. |
+**Product & IP (15%)** — 8–10: defensible technical moat, patents filed or
+granted. 5–7: real differentiation, not yet legally protected. 1–4: easily
+replicable, generic AI/software layer with no technical edge (Deprexa, an earlier
+Anti-ICP case, scored here for exactly this reason).
 
-**Applicable bonus (+2 pts, doesn't exceed the 15-point ceiling)**: prior joint
-experience of the founding team (+1) and a prior exit >€10M in any sector (+1).
+**Business model (10%)** — 8–10: proven unit economics, clear path to scale.
+5–7: plausible model, unit economics not yet validated. 1–4: unclear or
+structurally unprofitable model.
 
----
+**Traction (10%)** — 8–10: ARR >€500K growing >100% YoY, or institutional
+contracts with TCV >€1M, churn <5%. 5–7: ARR €100K–€500K or paid pilots with 2+
+institutional players (Luminae: €240K ARR, NRR 130–140%, 0% churn — scores here).
+1–4: pre-revenue or unpaid pilots only.
 
-### 4. Sector / Thesis fit — 15 pts
+**Competitors (5%)** — 8–10: clear differentiation, fragmented or nascent
+competitive field. 5–7: competitive field exists, differentiation defensible but
+contestable. 1–4: crowded field, no clear edge.
 
-| Points | Description |
-|---|---|
-| 13–15 | Exact core of the thesis, with precedent in the portfolio. |
-| 9–12 | Confirmed Digital Health in a sub-sector less familiar to the fund. |
-| 5–8 | Peripheral fit: significant consumer component or horizontal technology with no sector-specific differentiation. |
-| 0–4 | Outside the sector or generic AI applied to healthcare with no clinical or regulatory differentiation. |
+**Round economics (5%)** — 8–10: post-money <€15M, fund gets >7%, board seat
+confirmed. 5–7: post-money €15–40M, fund gets 3–7%. 1–4: post-money >€40M or
+equity <3% with no negotiation room (Sentrivo Dx — the earlier MOIC-based
+exception case — would score here, and would still require a formal IC exception
+to advance, same as before).
 
----
-
-### 5. Co-investors — 10 pts
-
-| Points | Description |
-|---|---|
-| 9–10 | Top-tier lead investor already committed. |
-| 6–8 | Mid-to-high quality co-investor committed, or a top-tier one in advanced talks. |
-| 3–5 | Only business angels or accelerators with no VC lead confirmed. |
-| 0–2 | No co-investors and no signal of interest from quality funds. |
-
----
-
-### 6. Geography / Tranche — 10 pts
-
-| Points | Description |
-|---|---|
-| 9–10 | Spanish with documented tech transfer. |
-| 7–8 | Spanish without formal tech transfer but with a relevant institutional link. |
-| 5–6 | European with operations or relevant Spanish pipeline. |
-| 2–4 | European with no Spanish presence or pipeline. |
-| 0–1 | Outside Spain/Europe with no European expansion plan. |
-
----
-
-### 7. Valuation / Equity — 10 pts
-
-| Points | Description |
-|---|---|
-| 9–10 | Post-money <€15M. The fund gets >7% from the first check. Board seat confirmed. |
-| 7–8 | Post-money €15M–€25M. The fund gets 5–7%. Standard market terms. |
-| 4–6 | Post-money €25M–€40M. The fund gets 3–5%. No board seat confirmed. |
-| 0–3 | Post-money >€40M or equity <3% with no room to negotiate. |
-
-**Blocking flag**: equity <3% with no negotiation room + no board seat = direct
-discard (Tier 4), unless a formal IC exception applies.
-
----
+**Blocking flags (unchanged in spirit from the old rubric)**: a Team score of 1–4
+or a Round economics score of 1–4 blocks advancement to Analysis unless a formal
+exception is approved by partners — same logic as the old MOIC and Valuation/Equity
+blocking flags, re-anchored to the new categories they now live inside.
 
 ### Score → Tier conversion
 
-| Total score | Entry tier | Action |
-|---|---|---|
-| 75–100 | **Tier 1** | Immediate contact / advance in process |
-| 50–74 | **Tier 2** | Watch soon — active follow-up, re-contact in <6 months |
-| 25–49 | **Tier 3** | Watch later — monitor, re-contact in 6–12 months |
-| <25 | **Tier 4 / Anti-ICP** | Pass — do not advance |
+| Final score | Entry tier            | Action                                                 |
+| ------------ | ---------------------- | -------------------------------------------------------- |
+| ≥75          | **Tier 1**              | Immediate contact / advance in process                    |
+| 50–74        | **Tier 2**              | Watch soon — active follow-up, re-contact in <6 months     |
+| 25–49        | **Tier 3**              | Watch later — monitor, re-contact in 6–12 months           |
+| <25          | **Tier 4 / Anti-ICP**   | Pass — do not advance                                      |
 
-**Note on blocking flags**: a total score >75 doesn't guarantee advancement if there's
-a blocking flag on MOIC (0–5 pts) or on Valuation/Equity (0–3 pts with no board seat).
-The IC can make explicit exceptions, but they must be documented.
+**Scope**: this model applies to pre-seed through Series A. The weighting (Team +
+Opportunity size = 55% of the base) assumes there isn't much operating data yet to
+judge. For Series B, the system deliberately shows no computed score — financial
+due diligence replaces the scorecard at that stage.
 
 ---
 
@@ -247,19 +223,20 @@ The IC can make explicit exceptions, but they must be documented.
 1. **What's the realistic return potential?**
 2. **Who's already putting money in?**
 3. **Is there real tech transfer?** — relevant for the Spanish tranche; if not, are
-   they the European leader in their space?
+they the European leader in their space?
 4. **What's the real traction?**
 5. **Why should we NOT invest?** — the team actively looks for reasons to discard; if
-   there's no serious objection, move forward
+there's no serious objection, move forward
 
 ---
 
 ## ICP evolution history (illustrative example)
 
-| Date | What changed | Why |
-|---|---|---|
-| T-18m | Added an explicit criterion for technological differentiation vs. generic AI | After a rejection where the value proposition of AI over public data with no clear technical edge wasn't enough |
-| T-12m | Added Tier 3 with explicit 6-12 month decay | Need to structure follow-up on promising pre-seed companies |
-| T-12m | Added Tier 4 as Anti-ICP with a no-revival rule | Operational clarity for the screener |
-| T-3m | Added a numeric 7-dimension rubric with descriptive anchors | To make the score reproducible and auditable across sessions and analysts |
-| T-1m | Active watchlist moved to `skills/fund-intelligence.md` | Decay should live where it's executed, not where it's defined |
+| Date  | What changed                                                                 | Why                                                                                                             |
+| ----- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| T-18m | Added an explicit criterion for technological differentiation vs. generic AI  | After a rejection where the value proposition of AI over public data with no clear technical edge wasn't enough |
+| T-12m | Added Tier 3 with explicit 6-12 month decay                                   | Need to structure follow-up on promising pre-seed companies                                                    |
+| T-12m | Added Tier 4 as Anti-ICP with a no-revival rule                               | Operational clarity for the screener                                                                           |
+| T-3m  | Added a numeric 7-dimension rubric with descriptive anchors                   | To make the score reproducible and auditable across sessions and analysts                                      |
+| T-1m  | Active watchlist moved to `skills/fund-intelligence.md`                       | Decay should live where it's executed, not where it's defined                                                  |
+| T-0   | Replaced the 7-dimension additive rubric with a 7-category base score + moat multiplier | The old dimensions conflated "does this exist" with "is this defensible long-term" — separating a base score from a credibility-of-path moat multiplier makes the two judgments explicit instead of blended into one number |
