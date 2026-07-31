@@ -1,136 +1,131 @@
 # Roadmap
 
-> Versión pública. El documento interno completo incluye análisis de mercado,
-> estrategia de financiación y go-to-market detallado que no se publica — lo que
-> sigue es la visión, las fases y los principios de arquitectura que las sostienen.
+> Public version. The full internal document includes market analysis, financing
+> strategy, and detailed go-to-market planning that isn't published — what follows
+> is the vision, the phases, and the architecture principles behind them.
 
 ---
 
-## El punto de partida
+## Starting point
 
-Un fondo de VC especializado en Digital Health, late seed / Series A, construyendo
-un sistema operativo de inversión sobre Claude (Anthropic) y monday.com desde junio
-2026.
+A VC fund specialized in Digital Health, late seed / Series A, building an
+investment operating system on Claude (Anthropic) and monday.com since June 2026.
 
-El primer módulo en producción es el **Dealflow Screener**: un flujo que analiza
-automáticamente el deck de una startup contra el ICP del fondo, clasifica la
-compañía y crea el ítem en el Pipeline con todos los campos correctamente rellenados.
+The first module in production is the **Dealflow Screener**: a flow that
+automatically analyzes a startup's deck against the fund's ICP, classifies the
+company, and creates the item in the Pipeline with all fields correctly filled.
 
-No es una demo. Es un sistema probado en producción, con deals reales, errores
-reales y soluciones reales.
+Not a demo. A system tested in production, with real deals, real failures, and
+real fixes.
 
-## Restricción de partida: construcción en solitario
+## Starting constraint: solo build
 
-Esto se construye en solitario, sin fecha de calendario fija por fase, hasta que
-haya validación de producto real — un fondo externo usando el pipeline de forma
-recurrente, con feedback positivo explícito. El co-fundador técnico se incorpora
-después de esa validación, no antes. Mientras se está solo, solo hay ancho de banda
-real para un track de trabajo pesado a la vez — todo lo demás tiene que ser barato
-de construir (reutiliza algo que ya existe) o trabajo de scoping que un co-fundador
-pueda ejecutar rápido cuando llegue.
+This is being built solo, with no fixed calendar date per phase, until there's real
+product validation — an external fund using the pipeline recurrently, with explicit
+positive feedback. The technical co-founder joins after that validation, not
+before. While working solo, there's only real bandwidth for one heavy-engineering
+track at a time — everything else has to be either cheap to build (reuses something
+that already exists) or scoping work a co-founder can execute fast once they arrive.
 
-## Visión
+## Vision
 
-Construir el sistema operativo estándar para fondos early stage — empezando por un
-fondo real como laboratorio. La ventaja competitiva no es la tecnología (Claude está
-disponible para todos) sino el conocimiento operativo: saber exactamente qué flujos
-necesita un fondo, cómo se clasifican los deals, qué campos importan, dónde falla la
-automatización y cómo se corrige. Ese conocimiento solo se consigue operando un
-fondo real.
+Build the standard operating system for early-stage funds — starting with one real
+fund as a lab. The competitive advantage isn't the technology (Claude is available
+to anyone) but the operational knowledge: knowing exactly what flows a fund needs,
+how deals get classified, which fields matter, where automation breaks and how it
+gets fixed. That knowledge only comes from operating a real fund.
 
-## Fase 0 — Precondiciones
+## Phase 0 — Preconditions
 
-Resolver lo que bloquearía comercializar el sistema el día que se decida hacerlo:
-titularidad de IP, vehículo societario si se factura a terceros.
+Resolve whatever would block commercializing the system the day that's decided: IP
+ownership, corporate vehicle if billing third parties.
 
-## Fase 1 — Núcleo en solitario
+## Phase 1 — Solo core (in progress)
 
-Objetivo: que el pipeline core llegue a nivel "grado IC" — suficientemente bueno
-como para sostener una decisión de inversión real sin reescritura mayor.
+Goal: get the core pipeline to "IC-grade" — good enough to support a real
+investment decision without a major rewrite.
 
-**Track A — Pipeline core** (secuencial, prioridad única de ingeniería):
-1. Dealflow Screener ✅ en producción
-2. Review one-pager — generación automática para el dealflow meeting
-3. Analysis / IC memo — memo completo con red flags, preguntas al equipo, capaz de
-   sostener una decisión de IC sin reescritura mayor
+**Track A — Pipeline core** (sequential, sole engineering priority):
+1. Dealflow Screener ✅ in production
+2. Review one-pager — automatic generation for the weekly dealflow meeting
+3. Analysis / IC memo — full memo with red flags, questions for the team, capable
+   of supporting an IC decision without a major rewrite
 
-**Track B — Fund intelligence** (paralelo, bajo coste — reorganización de datos que
-ya existen, no ingeniería nueva):
-- Historial de deals descartados y aprobados, con scoring y decay explícitos
-- Portfolio Management — el espejo de Dealflow Meetings para la fase post-inversión
-  (razonamiento de board, métricas, riesgos, hitos)
+**Track B — Fund intelligence** (parallel, low cost — reorganizing data that
+already exists, not new engineering):
+- History of discarded and approved deals, with explicit scoring and decay
+- Portfolio Management — the post-investment mirror of Dealflow Meetings (board
+  reasoning, metrics, risks, milestones)
 
-Fin de Fase 1 = Track A a nivel IC-grade y Track B con el histórico estructurado al
-100%. No hay fecha de calendario — hay una barra de calidad.
+End of Phase 1 = Track A at IC-grade and Track B with the historical archive fully
+structured. No calendar date — a quality bar.
 
-## Fase 2 — Expansión de adopción
+## Phase 2 — Adoption expansion
 
-Usar el pipeline ya maduro de Fase 1 como base de credibilidad para abrir el
-reporting a LPs y portfolio — el ángulo comercial más fácil de vender en frío a un
-segundo o tercer fondo que todavía no confía en el criterio del sistema.
+Use the now-mature Phase 1 pipeline as the credibility base to open up LP and
+portfolio reporting — the easiest cold-sell angle to a second or third fund that
+doesn't yet trust the system's judgment.
 
-Compliance (SOC 2, RBAC, segregación multi-fondo) se documenta en esta fase, no se
-construye — es trabajo de ingeniería pesado que espera al co-fundador técnico.
+Compliance (SOC 2, RBAC, multi-fund segregation) gets scoped in this phase, not
+built — that's heavy engineering that waits for the technical co-founder.
 
-## Fase 3 — Con co-fundador (post-validación)
+## Phase 3 — With a co-founder (post-validation)
 
-Multi-CRM (el fondo elige su stack, el sistema se adapta), multi-sector (ICP y
-flujos configurables), compliance real, integraciones de datos externos, y el
-arranque de una capa de efectos de red: benchmarking agregado y anonimizado entre
-varios fondos que use el sistema — cada fondo nuevo mejora la señal para los
-anteriores. No tiene valor por debajo de un número mínimo de fondos contribuyendo,
-así que no se lanza comercialmente antes de ese umbral.
+Multi-CRM (the fund picks its stack, the system adapts), multi-sector (configurable
+ICP and workflows), real compliance, external data integrations, and the start of a
+network-effects layer: aggregated, anonymized benchmarking across funds using the
+system — each new fund improves the signal for the ones already on it. Worthless
+below a minimum number of contributing funds, so it doesn't launch commercially
+before that threshold.
 
-## Fase 4 — Platform + Exit Prediction
+## Phase 4 — Platform + Exit Prediction
 
-Objetivo: cerrar el ciclo completo del negocio de un fondo, con predicción de exits
-como módulo insignia — condicional al volumen de dato multi-fondo acumulado en Fase
-3, no a una fecha de calendario.
+Goal: close the full loop of a fund's business, with exit prediction as the
+flagship module — conditional on the multi-fund data volume accumulated in Phase 3,
+not on a calendar date.
 
-Módulos upsell: LP Relations, Fundraising Kit, Co-investor Network (agregado,
-histórico — nunca pipeline en vivo), Fund Analytics.
+Upsell modules: LP Relations, Fundraising Kit, Co-investor Network (aggregated,
+historical — never live pipeline), Fund Analytics.
 
-## Por qué tiene sentido construirlo así
+## Why build it this way
 
-El problema es universal — miles de fondos de VC y PE early stage operan con el
-mismo caos: dealflow desordenado, análisis inconsistente, conocimiento institucional
-que se pierde cuando se va un analista. Los jugadores establecidos de CRM dominan la
-capa de relación, no la de juicio analítico. El moat es el conocimiento operativo
-codificado deal a deal, reforzado por datos agregados una vez existe la capa de
-efectos de red — hasta entonces es un moat más blando y replicable, y eso es
-deliberadamente honesto sobre dónde está el proyecto hoy.
+The problem is universal — thousands of early-stage VC and PE funds run on the same
+chaos: disorganized dealflow, inconsistent analysis, institutional knowledge that
+disappears when an analyst leaves. Established CRM players own the relationship
+layer, not the analytical judgment layer. The moat is operational knowledge
+encoded deal by deal, reinforced by aggregated data once the network-effects layer
+exists — until then it's a softer, more replicable moat, and that's a deliberately
+honest statement about where the project stands today.
 
-## La arquitectura que lo hace posible
+## The architecture that makes it possible
 
-El motor (flujos de trabajo, generación de documentos, integración con CRM) es
-genérico; el conocimiento del dominio (ICP, señales, campos, lógica de
-clasificación) vive en archivos de configuración intercambiables. Un fondo de otro
-sector debería poder hacer onboarding configurando su propio `CLAUDE.md` y sus
-`skills/`. El motor no cambia — cambia el contexto.
+The engine (workflows, document generation, CRM integration) is generic; domain
+knowledge (ICP, signals, fields, classification logic) lives in swappable
+configuration files. A fund in a different sector should be able to onboard by
+configuring its own `CLAUDE.md` and `skills/`. The engine doesn't change — the
+context does.
 
-## Regla arquitectónica transversal: fuente única de verdad
+## Cross-cutting architecture rule: single source of truth
 
-Aprendizaje directo de producción, no teórico: un módulo mantuvo durante semanas una
-tabla propia del estado de las compañías en watchlist, en paralelo al estado real en
-el CRM. Se desincronizó sin que nadie lo notara — el sistema lo diagnosticaba semana
-a semana y nadie lo corregía, porque corregir el documento a mano no es un proceso
-sostenible.
+A direct lesson from production, not a theoretical one: a module kept its own table
+of watchlist company status for weeks, in parallel to the real status in the CRM.
+It drifted out of sync without anyone noticing — the system flagged it week after
+week and nobody fixed it, because hand-correcting a doc isn't a sustainable process.
 
-Regla resultante, aplica a todo módulo futuro que trackee estado: ningún archivo o
-módulo debe cachear un dato que el sistema de origen ya mantiene como verdad viva.
-Se consulta en vivo, nunca se copia. Lo único que un módulo puede conservar por su
-cuenta es conocimiento que ningún otro sistema guarda — razonamiento, objeciones,
-checkpoints cualitativos.
+Resulting rule, applies to every future module that tracks state: no file or module
+should cache a value that the source system already maintains as live truth. It
+gets queried, never copied. The only thing a module can keep on its own is
+knowledge no other system holds — reasoning, objections, qualitative checkpoints.
 
-## Stack actual
+## Current stack
 
-| Capa | Herramienta |
+| Layer | Tool |
 |---|---|
 | AI | Claude (Anthropic) via Claude Projects |
 | CRM | monday.com |
-| Conocimiento | Archivos MD en el proyecto (CLAUDE.md, skills/) |
-| Automatización | MCP conectado a Claude |
+| Knowledge | MD files in the project (CLAUDE.md, skills/) |
+| Automation | MCP connected to Claude |
 
 ---
 
-*Última actualización: julio 2026 · versión pública*
+*Last updated: July 2026 · public version*
