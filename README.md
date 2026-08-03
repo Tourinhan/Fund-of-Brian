@@ -5,7 +5,7 @@
 > based on operates on confidential data belonging to a venture capital fund and is
 > not published — what's documented here is the design, not the content.
 
-> **Status (jul 2026)**: Fase 1 complete and in production — the full pipeline
+> **Status**: Fase 1 complete and in production — the full pipeline
 > (Screening, Review, Analysis/IC memo) and Fund Intelligence are live and in
 > active use, solo-built and solo-operated. Fase 2 (LP + Portfolio reporting) is
 > the current work in construction. See
