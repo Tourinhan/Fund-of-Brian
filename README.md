@@ -5,13 +5,11 @@
 > based on operates on confidential data belonging to a venture capital fund and is
 > not published — what's documented here is the design, not the content.
 
-> **Status**: Fase 1, solo-builder. Dealflow Screener is in production.
-> Review one-pager and Analysis/IC memo are under active development toward
-> IC-grade — not there yet, and the README won't pretend otherwise. Fund
-> Intelligence runs decay/revival tracking today; backfilling the historical
-> archive with structured scoring is in progress. See
-> [`docs/roadmap.md`](docs/roadmap.md) for the full picture, including what's
-> deliberately not built yet and why.
+> **Status (jul 2026)**: Fase 1 complete and in production — the full pipeline
+> (Screening, Review, Analysis/IC memo) and Fund Intelligence are live and in
+> active use, solo-built and solo-operated. Fase 2 (LP + Portfolio reporting) is
+> the current work in construction. See
+> [`docs/roadmap.md`](docs/roadmap.md) for the full picture.
 
 ---
 
@@ -97,13 +95,13 @@ prompt.
 | Funnel stage | Status | What the Brain does |
 |---|---|---|
 | **Screening** | ✅ In production | Receives a deck or a list of companies → classifies against the ICP → scores it → creates the item in the CRM with all fields → adds the summary as a comment |
-| **Review** | 🔧 Building toward IC-grade | Generates a first-draft one-pager for the weekly meeting from deck + founder call — not yet reliable enough to skip a human pass |
-| **Analysis / IC prep** | 🔧 Building toward IC-grade | Builds the iterative Initial Assessment (10 sections); IC memo generation is the current engineering priority, not yet at the bar of holding up without a partner rewrite |
-| **Fund Intelligence** | 🔧 Live tracking, backfill in progress | Runs decay/revival tracking on active watchlist entries; the historical archive of past discarded/approved deals is being structured with scoring and decay, not yet complete |
+| **Review** | ✅ In production | Generates the one-pager for the weekly meeting from deck + founder call, distinguishing verified data from assumption, without hiding red flags |
+| **Analysis / IC prep** | ✅ In production | Builds the iterative Initial Assessment (10 sections); anticipates the toughest IC questions with the team's likely answers and the main risks |
+| **Fund Intelligence** | ✅ In production | Runs decay/revival tracking on active watchlist entries systematically, not ad hoc; historical archive of past discarded/approved deals structured with scoring and decay |
 
 "IC-grade" here means: good enough to support a real investment decision without a
-major rewrite by a partner. That's a quality bar, not a date — see the roadmap for
-why.
+major rewrite by a partner — the bar Fase 1 was built to clear before moving on to
+Fase 2.
 
 ## Scoring model
 
@@ -202,32 +200,32 @@ examples/
 
 ## Where this is going
 
-The phases below are vision, not shipped product — gated behind explicit triggers,
-not calendar dates. Aspiration with a trigger attached, not a promise with a date.
-Full detail, including why each trigger is what it is, in
+Fase 1 is done. The phases below are vision for what comes after — gated behind
+explicit triggers, not calendar dates. Aspiration with a trigger attached, not a
+promise with a date. Full detail, including why each trigger is what it is, in
 [`docs/roadmap.md`](docs/roadmap.md).
 
-- **Now (Fase 1)**: pipeline core to IC-grade, solo-builder, one track of heavy
-engineering at a time.
-- **Fase 2**: LP + Portfolio reporting, once the core pipeline is credible enough to
-be the sales hook for a second/third fund.
-- **Fase 3 (post technical co-founder, triggered by the first external fund using
-this recurrently)**: multi-CRM, multi-sector, real compliance, data integrations.
+- **Now (Fase 2, in construction)**: LP + Portfolio reporting, building on a
+pipeline that's already proven itself in daily use.
+- **Fase 3 (gated on engineering capacity beyond solo, triggered by the first
+external fund using this recurrently)**: multi-CRM, multi-sector, real compliance,
+data integrations.
 - **Fase 4 (conditional on multi-fund data volume, not calendar)**: LP Relations,
 Fundraising Kit, Co-investor Network, Fund Analytics, and exit-pattern signal as
 the flagship module — only once there's enough aggregated data across funds for it
 to mean something.
 
-*(Mockups of the Fase 3/4 modules — Portfolio Management, Fund Intelligence,
-LP Relations — exist as a design prototype; screenshots below illustrate the
-direction, not shipped functionality.)*
+*(Mockups of the Fase 2/4 modules — Portfolio Management, LP Relations,
+Fundraising Kit, Co-investor Network, Fund Analytics — exist as a design
+prototype; screenshots below illustrate the direction, not shipped functionality.
+Fund Intelligence itself is already live, not mocked up — see the status above.)*
 
 <!-- Lovable screenshots go here -->
 
 ## Results (what's actually measurable today)
 
-- Screening — the stage actually in production — goes from deck to a scored,
-fully-fielded CRM item without an analyst touching a form
+- The full pipeline — Screening through IC prep — goes from deck to a
+partner-ready decision packet without starting from a blank page each time
 - Reproducible ICP scoring across sessions — same deal, same inputs, stable score
 - Systematic decay tracking: every watchlist company gets an explicit checkpoint
 and expected signal instead of relying on someone remembering. This surfaces gaps —
@@ -237,8 +235,8 @@ practice
 - Full traceability: every scoring decision and every criterion change is documented
 with a date and reason, not just kept in the analyst's head
 
-Nothing above is claimed for Review, Analysis, or IC prep — those are still 🔧, and
-this repo would rather undersell than repeat the mistake principle 6 is named after.
+Fase 2 modules (LP Relations, Portfolio Management, and the rest) aren't claimed
+here — those are 🔧, shown only as design direction above.
 
 ---
 

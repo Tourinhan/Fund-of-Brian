@@ -6,77 +6,52 @@
 
 ---
 
-## Starting point
-
-A VC fund specialized in Digital Health, late seed / Series A, building an
-investment operating system on Claude (Anthropic) and monday.com since June 2026.
-
-The first module in production is the **Dealflow Screener**: a flow that
-automatically analyzes a startup's deck against the fund's ICP, classifies the
-company, and creates the item in the Pipeline with all fields correctly filled.
-
-Not a demo. A system tested in production, with real deals, real failures, and
-real fixes.
-
 ## Starting constraint: solo build
 
-This is being built solo, with no fixed calendar date per phase, until there's real
-product validation — an external fund using the pipeline recurrently, with explicit
-positive feedback. The technical co-founder joins after that validation, not
-before. While working solo, there's only real bandwidth for one heavy-engineering
-track at a time — everything else has to be either cheap to build (reuses something
-that already exists) or scoping work a co-founder can execute fast once they arrive.
+This has been designed, built, and operated solo — no dedicated engineering
+resource, no co-founder. The phase structure below isn't a funding roadmap; it's a
+map of what needs to be true operationally before more scope makes sense, given
+that constraint. While operating solo, only one heavy build track gets full
+attention at a time — everything else has to reuse what already exists or wait for
+more capacity, whatever form that takes later.
 
 ## Vision
 
-Build the standard operating system for early-stage funds — starting with one real
-fund as a lab. The competitive advantage isn't the technology (Claude is available
-to anyone) but the operational knowledge: knowing exactly what flows a fund needs,
-how deals get classified, which fields matter, where automation breaks and how it
-gets fixed. That knowledge only comes from operating a real fund.
+An operating system for how an early-stage fund actually runs its dealflow — not a
+set of scripts, a system: connected knowledge, workflows, and tools that hold up
+under real use, expanding in scope as the operational foundation proves itself.
+Built and operated by one person as both architect and operator — the fastest way
+to learn what a fund actually needs is to run one.
 
 ## Phase 0 — Preconditions
 
-Resolve whatever would block commercializing the system the day that's decided: IP
-ownership, corporate vehicle if billing third parties.
+Whatever needs resolving before scope expands beyond one fund: IP ownership,
+appropriate structure if this ever serves more than one fund at once.
 
-## Phase 1 — Solo core (in progress)
+## Phase 1 — Core pipeline — ✅ in production
 
-Goal: get the core pipeline to "IC-grade" — good enough to support a real
-investment decision without a major rewrite.
+Track A (Dealflow Screener, Review one-pager, Analysis / IC memo) and Track B
+(Fund Intelligence — decay tracking, revival detection, historical archive) are
+both live and in active use, not prototypes.
 
-**Track A — Pipeline core** (sequential, sole engineering priority):
-1. Dealflow Screener ✅ in production
-2. Review one-pager — automatic generation for the weekly dealflow meeting
-3. Analysis / IC memo — full memo with red flags, questions for the team, capable
-   of supporting an IC decision without a major rewrite
+## Phase 2 — Adoption expansion — 🔧 in construction (current work)
 
-**Track B — Fund intelligence** (parallel, low cost — reorganizing data that
-already exists, not new engineering):
-- History of discarded and approved deals, with explicit scoring and decay
-- Portfolio Management — the post-investment mirror of Dealflow Meetings (board
-  reasoning, metrics, risks, milestones)
-
-End of Phase 1 = Track A at IC-grade and Track B with the historical archive fully
-structured. No calendar date — a quality bar.
-
-## Phase 2 — Adoption expansion
-
-Use the now-mature Phase 1 pipeline as the credibility base to open up LP and
-portfolio reporting — the easiest cold-sell angle to a second or third fund that
-doesn't yet trust the system's judgment.
+Use the now-proven Phase 1 pipeline as the credibility base to open up LP and
+portfolio reporting — the natural next layer once the core pipeline is trusted
+enough to be worth a second fund's attention.
 
 Compliance (SOC 2, RBAC, multi-fund segregation) gets scoped in this phase, not
-built — that's heavy engineering that waits for the technical co-founder.
+built — real engineering work that waits for more capacity than one person has.
 
-## Phase 3 — With a co-founder (post-validation)
+## Phase 3 — Multi-fund, multi-sector — gated on capacity, not calendar
 
 Multi-CRM (the fund picks its stack, the system adapts), multi-sector (configurable
 ICP and workflows), real compliance, external data integrations, and the start of a
 network-effects layer: aggregated, anonymized benchmarking across funds using the
 system — each new fund improves the signal for the ones already on it. Worthless
 below a minimum number of contributing funds, so it doesn't launch commercially
-before that threshold.
+before that threshold. This phase needs engineering bandwidth beyond one person —
+whatever shape that takes.
 
 ## Phase 4 — Platform + Exit Prediction
 
@@ -89,13 +64,14 @@ historical — never live pipeline), Fund Analytics.
 
 ## Why build it this way
 
-The problem is universal — thousands of early-stage VC and PE funds run on the same
-chaos: disorganized dealflow, inconsistent analysis, institutional knowledge that
-disappears when an analyst leaves. Established CRM players own the relationship
-layer, not the analytical judgment layer. The moat is operational knowledge
-encoded deal by deal, reinforced by aggregated data once the network-effects layer
-exists — until then it's a softer, more replicable moat, and that's a deliberately
-honest statement about where the project stands today.
+The underlying problem isn't specific to one fund: dealflow gets disorganized,
+analysis quality depends on who happens to be doing it that week, and institutional
+knowledge disappears when an analyst leaves. Generic CRM tools handle the
+relationship layer well; they don't encode how a specific fund actually judges a
+deal. That judgment only gets captured by running a real fund and building the
+system around what actually happens — not by designing it in the abstract first.
+Whether this stays a personal operating system or becomes something else later is
+an open question; the architecture doesn't require deciding that now.
 
 ## The architecture that makes it possible
 
